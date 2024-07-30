@@ -14,7 +14,10 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-        },
+            gridTemplateColumns: {
+                'table': '10fr 3fr'
+            }
+        }
     },
 
     plugins: [forms],
