@@ -2,7 +2,8 @@
 
 @section('content')
     <h1 class="text-2xl text-gray-500 mb-4">Добавить новую категорию</h1>
-    <form action="" class="bg-white p-4 flex flex-col gap-4 rounded-md" >
+    <form action="{{route('admin.category.store')}}" method="post" class="bg-white p-4 flex flex-col gap-4 rounded-md" >
+        @csrf
         <div class=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div class="sm:col-span-4">
                 <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Название
@@ -36,7 +37,7 @@
             </div>
         </div>
         <label class="inline-flex items-center cursor-pointer">
-            <input type="checkbox" value="" class="sr-only peer">
+            <input type="checkbox" name="status" value="" class="sr-only peer">
             <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
             <span class="ms-3 text-sm font-medium text-gray-900 ">Активна?</span>
         </label>

@@ -16,4 +16,5 @@ Route::prefix('lk')->middleware('auth:admin')->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('admin.logout');
 
     Route::get('/create-category', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('/create-category', [CategoryController::class, 'store'])->name('admin.category.store');
 });
