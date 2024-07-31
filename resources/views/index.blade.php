@@ -1,8 +1,9 @@
-@extends('app')
+@extends('admin.layouts.app')
 @section('content')
     <div class="card ">
         <div class="flex  items-center gap-6 mb-3">
-            <a href="" title="Все записи автора" class="flex gap-1 items-center text-gray-500 text-base hover:text-purple-800">
+            <a href="" title="Все записи автора"
+               class="flex gap-1 items-center text-gray-500 text-base hover:text-purple-800">
                 <i class="fa-solid fa-user"></i>
                 Дмитрий Новосёлов
             </a>

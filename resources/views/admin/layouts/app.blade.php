@@ -17,11 +17,12 @@
         @include('admin.layouts.sidebar')
         <div class="w-full">
             @include('admin.layouts.header')
-            @yield('content')
+            <section class="p-4">
+                @yield('content')
+            </section>
         </div>
     </div>
 </div>
-
 
 
 </body>
