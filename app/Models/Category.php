@@ -16,7 +16,7 @@ class Category extends Model
 
     public static function create(
         string $name,
-        ?int $parentId,
+        ?int   $parentId,
     ): Category
     {
         $category = new Category();

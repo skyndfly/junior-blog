@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Contracts\Admin\CategoryServiceContract;
-use App\Service\Admin\Category\Store\StoreService;
+use App\Contracts\Admin\CategoryShowServiceContract;
+use App\Service\Admin\Category\Show\ShowService as CategoryShowService;
+use App\Service\Admin\Category\Store\StoreService as CategoryStoreService;
 use App\View\Components\admin\alerts\DangerAlert;
 use App\View\Components\admin\alerts\InfoAlert;
 use App\View\Components\admin\alerts\SuccessAlert;
@@ -18,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(CategoryServiceContract::class, StoreService::class);
+        $this->app->bind(CategoryServiceContract::class, CategoryStoreService::class);
+        $this->app->bind(CategoryShowServiceContract::class, CategoryShowService::class);
     }
 
     /**
