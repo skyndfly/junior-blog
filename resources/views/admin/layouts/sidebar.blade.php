@@ -1,7 +1,7 @@
 <nav class="text-white h-[100vh]" style="background-color: #111827;">
     <h1 class="text-2xl text-center font-bold h-[76px] flex items-center justify-center">Junior-blog Panel</h1>
     <div class="px-4">
-        <a href="" class="block w-full hover:bg-slate-500 p-2 rounded-md">
+        <a href="{{route('admin.dashboard')}}" class="block w-full hover:bg-slate-500 p-2 rounded-md">
             <i class="fa-solid fa-chart-line"></i>
             Рабочий стол
         </a>
@@ -23,7 +23,7 @@
                     <i class="fa-solid fa-list"></i>
                     Список категорий
                 </a>
-                <a href="" class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
+                <a href="{{route('admin.category.create')}}" class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
                     <i class="fa-solid fa-plus"></i>
                     Добавить
                 </a>
@@ -82,12 +82,6 @@
                 });
             });
         });
-
-        // function dropdown() {
-        //     document.querySelector(".submenu").classList.toggle("hidden");
-        //     document.querySelector("#arrow").classList.toggle("rotate-0");
-        // }
-        //
         // dropdown();
         //
         // function openSidebar() {
