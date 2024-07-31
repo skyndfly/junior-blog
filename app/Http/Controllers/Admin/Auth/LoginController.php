@@ -16,6 +16,7 @@ class LoginController extends Controller
      */
     public function create(): View
     {
+
         return view('admin.auth.login');
     }
 
