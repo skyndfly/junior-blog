@@ -15,7 +15,8 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             gridTemplateColumns: {
-                'table': '10fr 3fr'
+                'table': '10fr 3fr',
+                'admin': '2fr 10fr'
             }
         }
     },
