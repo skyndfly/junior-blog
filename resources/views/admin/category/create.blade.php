@@ -1,6 +1,6 @@
 <?php
-/** @var \App\Service\Admin\Category\Show\Dto\Dto $cat */
-/** @var \App\Service\Admin\Category\Show\Dto\CollectionDto $categories */
+/** @var \App\Service\Admin\Category\ShowForSelect\Dto\Dto $cat */
+/** @var \App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto $categories */
 
 ?>
 @extends('admin.layouts.app')
@@ -15,7 +15,7 @@
                     категории</label>
                 <div class="mt-2">
                     <div
-                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                         <input type="text" name="name" id="name" autocomplete="name"
                                class="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                placeholder="Linux">
@@ -29,7 +29,7 @@
                     категория</label>
                 <div class="mt-2">
                     <div
-                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
 
                         <select name="parentId" id="parent_id"
                                 class="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
@@ -49,7 +49,7 @@
         <label class="inline-flex items-center cursor-pointer">
             <input type="checkbox" name="status" value="" class="sr-only peer">
             <div
-                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
+                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
             <span class="ms-3 text-sm font-medium text-gray-900 ">Активна?</span>
         </label>
 

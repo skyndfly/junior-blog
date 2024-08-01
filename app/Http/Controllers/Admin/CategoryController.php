@@ -13,9 +13,17 @@ use App\Service\Admin\Category\Store\Dto\StoreDto as CategoryStoreDto;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 use App\Contracts\Admin\CategoryServiceContract as CategoryStoreService;
 use App\Contracts\Admin\CategoryShowServiceContract as CategoryShowService;
+use App\Service\Admin\Category\ShowAll\ShowAllService as CategoryShowAllService;
 
 class CategoryController extends Controller
 {
+    public function index(CategoryShowAllService $service): View
+    {
+        return view('admin.category.index', [
+            'categories' => $service->handle()
+        ]);
+    }
+
     public function create(CategoryShowService $service): View
     {
         $categories = $service->handle();

@@ -7,7 +7,7 @@
         </a>
         <div class="menu_dropdown_item">
             <button
-                class="menu_dropdown_button flex items-center justify-between w-full text-left hover:bg-slate-500 p-2 rounded-md cursor-pointer"
+                    class="menu_dropdown_button flex items-center justify-between w-full text-left hover:bg-slate-500 p-2 rounded-md cursor-pointer"
             >
                 <span>
                     <i class="fa-solid fa-layer-group"></i>
@@ -19,7 +19,8 @@
 
             </button>
             <div class="submenu hidden">
-                <a href="" class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
+                <a href="{{route('admin.category.index')}}"
+                   class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
                     <i class="fa-solid fa-list"></i>
                     Список категорий
                 </a>

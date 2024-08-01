@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Admin\Category\Show\Dto;
+namespace App\Service\Admin\Category\ShowForSelect\Dto;
 
 class Dto
 {

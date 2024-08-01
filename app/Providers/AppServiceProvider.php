@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Contracts\Admin\CategoryServiceContract;
 use App\Contracts\Admin\CategoryShowServiceContract;
-use App\Service\Admin\Category\Show\ShowService as CategoryShowService;
+use App\Service\Admin\Category\ShowForSelect\ShowService as CategoryShowService;
 use App\Service\Admin\Category\Store\StoreService as CategoryStoreService;
 use App\View\Components\admin\alerts\DangerAlert;
 use App\View\Components\admin\alerts\InfoAlert;

@@ -3,7 +3,7 @@
 namespace App\Contracts\Admin;
 
 use App\Repository\Admin\CategoryRepository;
-use App\Service\Admin\Category\Show\Dto\CollectionDto;
+use App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto;
 
 interface CategoryShowServiceContract
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Service\Admin\Category\Show;
+namespace App\Service\Admin\Category\ShowForSelect;
 
 use App\Contracts\Admin\CategoryShowServiceContract;
 use App\Repository\Admin\CategoryRepository;
-use App\Service\Admin\Category\Show\Dto\CollectionDto;
-use App\Service\Admin\Category\Show\Dto\Dto;
+use App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto;
+use App\Service\Admin\Category\ShowForSelect\Dto\Dto;
 use Illuminate\Support\Collection;
 
 class ShowService implements CategoryShowServiceContract
