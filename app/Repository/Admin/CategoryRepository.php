@@ -4,6 +4,7 @@ namespace App\Repository\Admin;
 
 use App\Models\Category;
 use DomainException;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -24,6 +25,11 @@ class CategoryRepository
             ->get();
 
         return collect($categories)->keyBy('id');
+    }
+
+    public function getAllPaginate(): LengthAwarePaginator
+    {
+        return Category::query()->paginate(Category::PAGINATE);
     }
 
 }
