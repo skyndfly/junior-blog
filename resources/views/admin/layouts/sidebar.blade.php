@@ -52,7 +52,7 @@
                     <i class="fa-solid fa-list"></i>
                     Список записей
                 </a>
-                <a href="" class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
+                <a href="{{route('admin.article.create')}}" class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
                     <i class="fa-solid fa-plus"></i>
                     Добавить
                 </a>
