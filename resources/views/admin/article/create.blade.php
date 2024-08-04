@@ -28,7 +28,7 @@
                 >
                     <textarea
                         class="block w-full min-h-[300px] border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        name="description" id=""
+                        name="description" id="description"
                     ></textarea>
                 </div>
             </div>
@@ -83,4 +83,7 @@
             Создать
         </button>
     </form>
+    <script >
+
+    </script>
 @endsection

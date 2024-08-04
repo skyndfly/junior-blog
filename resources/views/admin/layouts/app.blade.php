@@ -9,7 +9,7 @@
 
 
     <!-- Scripts -->
-    @vite( 'resources/js/app.js')
+    @vite( 'resources/js/admin/app.js')
 </head>
 <body class="" style="background: #edf2f7;">
 <div>
@@ -37,12 +37,12 @@
         </x-admin-alerts-warning-alert>
 
     @endif
-    <div class="grid grid-cols-admin">
+    <div class="grid grid-cols-admin h-[100vh]">
 
         @include('admin.layouts.sidebar')
         <div class="w-full">
             @include('admin.layouts.header')
-            <section class="p-4">
+            <section class="p-4 ">
                 @yield('content')
             </section>
         </div>

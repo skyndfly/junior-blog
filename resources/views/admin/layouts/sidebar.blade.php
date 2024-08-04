@@ -1,4 +1,4 @@
-<nav class="text-white h-[100vh]" style="background-color: #111827;">
+<nav class="text-white h-[100%] " style="background-color: #111827;">
     <h1 class="text-2xl text-center font-bold h-[76px] flex items-center justify-center">Junior-blog Panel</h1>
     <div class="px-4">
         <a href="{{route('admin.dashboard')}}" class="block w-full hover:bg-slate-500 p-2 rounded-md">
