@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('content')
     <div class="card ">
         <div class="flex  items-center gap-6 mb-3">

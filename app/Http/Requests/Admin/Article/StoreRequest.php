@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Category;
+namespace App\Http\Requests\Admin\Article;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,8 +23,11 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:categories,name',
-            'parentId' => 'nullable|integer|exists:categories,id',
+            'title' => 'required|string|max:140',
+            'description' => 'required|string',
+            'shortDescription' => 'required|max:250',
+            'mainImage' => 'required|image|mimes:jpg,jpeg,png',
+            'categoryId' => 'required|integer|exists:categories,id',
         ];
     }
 }
