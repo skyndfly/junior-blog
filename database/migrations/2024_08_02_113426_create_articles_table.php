@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('shortDescription');
             $table->string('mainImage');
             $table->string('status');
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('categoryId');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('categoryId')->references('id')->on('categories');
         });
     }
 

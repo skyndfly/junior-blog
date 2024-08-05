@@ -1,12 +1,22 @@
 <?php
-///** @var \App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto $categories */
+/** @var \App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto $categories */
 
 ?>
 @extends('admin.layouts.app')
-
 @section('content')
+    @if(empty($categories->getItems()))
+        <x-admin-access-denied>
+            <p>
+                Прежде чем создавать запись, необходимо добавить категорию.
+            </p>
+            <a href="{{route('admin.category.create')}}" class="text-blue-700">
+                Добавить категорию
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </x-admin-access-denied>
+    @else
     <h1 class="text-2xl text-gray-500 mb-4">Добавить новую запись</h1>
-    <form action="" method="post" class="bg-white p-4 flex flex-col gap-4 rounded-md">
+    <form action="" method="post" class="bg-white p-4 flex flex-col gap-4 rounded-md" enctype="multipart/form-data">
         @csrf
         <div class="w-full">
             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Название</label>
@@ -58,20 +68,8 @@
                 </div>
             </div>
         </div>
-        <div class="w-full">
-            <label for="mainImage" class="block text-sm font-medium leading-6 text-gray-900">Категория</label>
-            <div class="mt-2">
-                <div
-                    class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
-                >
-                    <select
-                        class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    >
-                        <option value="">Программирование</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+        <x-admin-form-category-select :categories="$categories->getItems()" name="categoryId">
+        </x-admin-form-category-select>
         <label class="inline-flex items-center cursor-pointer">
             <input type="checkbox" name="status" value="" class="sr-only peer">
             <div
@@ -83,7 +81,5 @@
             Создать
         </button>
     </form>
-    <script >
-
-    </script>
+    @endif
 @endsection

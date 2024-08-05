@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Contracts\Admin\CategoryShowServiceContract as CategoryShowService;
 
 class ArticleController extends Controller
 {
-    public function create()
+    public function create(CategoryShowService  $categoryShowService)
     {
-        return view('admin.article.create');
+        $collection = $categoryShowService->handle();
 
+        return view('admin.article.create',[
+            'categories' => $collection
+        ]);
     }
 }
