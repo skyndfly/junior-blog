@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CkeditorImageUplod;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,7 @@ Route::prefix('lk')->middleware('auth:admin')->group(function () {
 
     //article
     Route::get('/create-article', [ArticleController::class, 'create'])->name('admin.article.create');
+
+    //ckeditor upload image
+    Route::post('/upload-image', CkeditorImageUplod::class)->name('admin.ckeditor.image.upload');
 });

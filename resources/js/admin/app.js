@@ -1,6 +1,6 @@
 import '../bootstrap';
 import '../../css/app.css';
-import './ckeditor.js';
+import './ckeditor/ckeditor.js';
 
 
 import Alpine from 'alpinejs';
