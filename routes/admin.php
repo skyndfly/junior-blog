@@ -24,6 +24,7 @@ Route::prefix('lk')->middleware('auth:admin')->group(function () {
 
     //article
     Route::get('/create-article', [ArticleController::class, 'create'])->name('admin.article.create');
+    Route::post('/create-article', [ArticleController::class, 'store'])->name('admin.article.store');
 
     //ckeditor upload image
     Route::post('/upload-image', CkeditorImageUplod::class)->name('admin.ckeditor.image.upload');
