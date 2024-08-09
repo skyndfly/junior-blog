@@ -2,11 +2,20 @@
 
 namespace App\Service\Admin\Article\Store;
 
+use App\Contracts\Admin\Article\ArticleStoreContract;
 use App\Models\Article;
+use App\Repository\Admin\ArticleRepository;
 
-class StoreService
+class StoreService implements ArticleStoreContract
 {
-    public function handle(StoreDto $dto)
+    private ArticleRepository $articleRepository;
+
+    public function __construct(ArticleRepository $articleRepository)
+    {
+        $this->articleRepository = $articleRepository;
+    }
+
+    public function handle(StoreDto $dto): void
     {
 
       $model = Article::create(
@@ -17,7 +26,7 @@ class StoreService
           Article::STATUS_PUBLISHED,
           $dto->categoryId
       );
-        $model->save();
+      $this->articleRepository->store($model);
     }
 
 }

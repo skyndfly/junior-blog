@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Contracts\Admin\CategoryShowServiceContract as CategoryShowService;
-use App\Service\Admin\Article\Store\StoreService as ArticleStoreService;
+use App\Contracts\Admin\Article\ArticleStoreContract as ArticleStoreService;
 use App\Http\Requests\Admin\Article\StoreRequest;
+use DomainException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use App\Service\Admin\Article\Store\StoreDto as StoreDto;
@@ -23,7 +25,7 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function store(StoreRequest $request, ArticleStoreService $service)
+    public function store(StoreRequest $request, ArticleStoreService $service): RedirectResponse
     {
 
         try {
@@ -33,14 +35,13 @@ class ArticleController extends Controller
             } else {
                 $imagePath = null;
             }
-
             // Создаем DTO с путем к изображению
             $data = new StoreDto(array_merge($request->validated(), ['mainImage' => $imagePath]));
 
             $service->handle($data);
             $request->session()->flash('success', 'Запись добавлена.');
 
-        }catch (\DomainException|UnknownProperties $e){
+        }catch (DomainException|UnknownProperties $e){
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
             $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
