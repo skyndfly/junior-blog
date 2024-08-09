@@ -22,5 +22,10 @@
                 @endif
             </select>
         </div>
+        <div class="text-red-500">
+            @error($name)
+            {{$message}}
+            @enderror
+        </div>
     </div>
 </div>
