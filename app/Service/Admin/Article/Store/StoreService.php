@@ -16,8 +16,8 @@ class StoreService
           $dto->mainImage,
           Article::STATUS_PUBLISHED,
           $dto->categoryId
-      ) ;
-      dd($model->save());
+      );
+        $model->save();
     }
 
 }
