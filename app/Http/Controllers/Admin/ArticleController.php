@@ -17,11 +17,11 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class ArticleController extends Controller
 {
-    public function create(CategoryShowService  $categoryShowService): View
+    public function create(CategoryShowService $categoryShowService): View
     {
         $collection = $categoryShowService->handle();
 
-        return view('admin.article.create',[
+        return view('admin.article.create', [
             'categories' => $collection
         ]);
     }
@@ -30,14 +30,14 @@ class ArticleController extends Controller
     {
 
         try {
-            $imagePath = UploadImageHelper::uploadImage( $request, 'admin/articles', 'mainImage');
+            $imagePath = UploadImageHelper::uploadImage($request, 'admin/articles', 'mainImage');
             // Создаем DTO с путем к изображению
             $data = new StoreDto(array_merge($request->validated(), ['mainImage' => $imagePath]));
 
             $service->handle($data);
             $request->session()->flash('success', 'Запись добавлена.');
 
-        }catch (DomainException|UnknownProperties $e){
+        } catch (DomainException|UnknownProperties $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
             $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
