@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\UploadImageHelper;
 use App\Http\Controllers\Controller;
 use App\Contracts\Admin\CategoryShowServiceContract as CategoryShowService;
 use App\Contracts\Admin\Article\ArticleStoreContract as ArticleStoreService;
@@ -29,12 +30,7 @@ class ArticleController extends Controller
     {
 
         try {
-            // Обработка и сохранение изображения
-            if ($request->hasFile('mainImage')) {
-                $imagePath = $request->file('mainImage')->store('uploads/admin/articles', 'public');
-            } else {
-                $imagePath = null;
-            }
+            $imagePath = UploadImageHelper::uploadImage( $request, 'admin/articles', 'mainImage');
             // Создаем DTO с путем к изображению
             $data = new StoreDto(array_merge($request->validated(), ['mainImage' => $imagePath]));
 
