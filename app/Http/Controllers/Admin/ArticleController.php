@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Contracts\Admin\CategoryShowServiceContract as CategoryShowService;
 use App\Contracts\Admin\Article\ArticleStoreContract as ArticleStoreService;
 use App\Http\Requests\Admin\Article\StoreRequest;
+use App\Models\Article;
 use DomainException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use App\Service\Admin\Article\Store\StoreDto as StoreDto;
@@ -45,5 +47,12 @@ class ArticleController extends Controller
             Log::error($logMessage);
         }
         return redirect()->back();
+    }
+
+    public function show(Article $article)
+    {
+        return view('admin.article.show', [
+            'article' => $article
+        ]);
     }
 }

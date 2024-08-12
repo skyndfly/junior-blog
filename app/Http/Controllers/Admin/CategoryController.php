@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Category\StoreRequest as StoreRequestCategory;
+use App\Models\Category;
 use DomainException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -49,4 +50,8 @@ class CategoryController extends Controller
         return to_route('admin.category.create');
     }
 
+    public function show(Category $category)
+    {
+        dd($category);
+    }
 }

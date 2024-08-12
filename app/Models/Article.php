@@ -16,8 +16,14 @@ class Article extends Model
     protected $guarded = [];
     protected $table = 'articles';
 
+    public function getRouteKeyName(): string
+    {
+        return parent::getRouteKeyName();
+    }
+
     public static function create(
         string $title,
+        string $slug,
         string $description,
         string $shortDescription,
         string $mainImage,
@@ -27,6 +33,7 @@ class Article extends Model
     {
         $model = new Article();
         $model['title'] = $title;
+        $model['slug'] = $slug;
         $model['description'] = $description;
         $model['shortDescription'] = $shortDescription;
         $model['mainImage'] = $mainImage;

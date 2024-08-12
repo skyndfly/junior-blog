@@ -14,10 +14,10 @@ class Handler
     public static function handle(): Collection
     {
         $articles = Article::query()
-            ->select('title', 'shortDescription')
+            ->select('title', 'shortDescription', 'slug')
             ->where(['status' => Article::STATUS_PUBLISHED])
             ->orderBy('created_at', 'desc')
-            ->skip(1)
+            ->skip(0)
             ->limit(30)
             ->get();
 
