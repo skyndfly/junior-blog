@@ -30,7 +30,7 @@ class ArticleController extends Controller
     {
 
         try {
-            $imagePath = UploadImageHelper::uploadImage($request, 'admin/articles', 'mainImage');
+            $imagePath = UploadImageHelper::uploadImage($request, 'articles', 'mainImage');
             // Создаем DTO с путем к изображению
             $data = new StoreDto(array_merge($request->validated(), ['mainImage' => $imagePath]));
 
