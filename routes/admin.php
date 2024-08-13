@@ -25,6 +25,7 @@ Route::prefix('lk')->middleware('auth:admin')->group(function () {
 
     //article
     Route::get('/create-article', [ArticleController::class, 'create'])->name('admin.article.create');
+    Route::get('/articles', [ArticleController::class, 'index'])->name('admin.article.index');
     Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('admin.article.show');
     Route::post('/create-article', [ArticleController::class, 'store'])->name('admin.article.store');
 

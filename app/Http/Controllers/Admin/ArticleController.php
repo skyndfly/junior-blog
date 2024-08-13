@@ -11,11 +11,13 @@ use App\Models\Article;
 use DomainException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Service\Admin\Article\Show\Dto as ArticleShowDto;
+use App\Service\Admin\Category\Show\Dto as CategoryShowDto;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use App\Service\Admin\Article\Store\StoreDto as StoreDto;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
+use App\Service\Admin\Article\ShowAll\Handler as ArticleShowAllHandler;
 
 class ArticleController extends Controller
 {
@@ -49,10 +51,23 @@ class ArticleController extends Controller
         return redirect()->back();
     }
 
-    public function show(Article $article)
+    /**
+     * @throws UnknownProperties
+     */
+    public function show(Article $article): View
     {
+        $category = new CategoryShowDto($article->category->toArray());
+        $data = new ArticleShowDto(array_merge($article->toArray(), ['category' => $category->name]));
         return view('admin.article.show', [
-            'article' => $article
+            'article' => $data,
+            'category' => $category
+        ]);
+    }
+
+    public function index(ArticleShowAllHandler $handler): View
+    {
+        return view('admin.article.index', [
+            'articles' => $handler->handle()->getItems(),
         ]);
     }
 }

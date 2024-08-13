@@ -18,7 +18,7 @@
                 </span>
 
             </button>
-            <div class="submenu hidden">
+            <div class="submenu hidden bg-slate-800 rounded-md">
                 <a href="{{route('admin.category.index')}}"
                    class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
                     <i class="fa-solid fa-list"></i>
@@ -47,8 +47,8 @@
                 </span>
 
             </button>
-            <div class="submenu hidden">
-                <a href="" class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
+            <div class="submenu hidden bg-slate-800 rounded-md">
+                <a href="{{route('admin.article.index')}}" class="block w-full  py-2 ps-8 rounded-md hover:bg-slate-500">
                     <i class="fa-solid fa-list"></i>
                     Список записей
                 </a>

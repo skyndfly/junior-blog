@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Article extends Model
 {
@@ -13,12 +14,13 @@ class Article extends Model
     public const STATUS_DRAFT = 'draft';
     public const STATUS_UNPUBLISHED = 'unpublished';
     public const STATUS_DELETED = 'deleted';
+    public const ADMIN_PAGINATION = 30;
     protected $guarded = [];
     protected $table = 'articles';
 
     public function getRouteKeyName(): string
     {
-        return parent::getRouteKeyName();
+        return 'slug';
     }
 
     public static function create(
@@ -40,5 +42,10 @@ class Article extends Model
         $model['status'] = $status;
         $model['categoryId'] = $categoryId;
         return $model;
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'categoryId');
     }
 }

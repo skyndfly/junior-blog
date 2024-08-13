@@ -1,7 +1,5 @@
-
 @php
-    use App\Service\Article\NewsList\Handler;
-    use App\Service\Article\NewsList\Dto;
+    use App\Service\Article\NewsList\Dto;use App\Service\Article\NewsList\Handler;
     /** @var Dto[] $articles */
     $articles = Handler::handle()->getItems();
 @endphp
