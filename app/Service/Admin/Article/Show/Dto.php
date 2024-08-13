@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Service\Admin\Article\Store;
+namespace App\Service\Admin\Article\Show;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class StoreDto extends DataTransferObject
+class Dto extends DataTransferObject
 {
     public string $title;
     public string $slug;
@@ -12,6 +12,7 @@ class StoreDto extends DataTransferObject
     public string $shortDescription;
     public ?string $mainImage = null;
     public ?string $status = null;
+    public string $category;
     public int $categoryId;
 
 }

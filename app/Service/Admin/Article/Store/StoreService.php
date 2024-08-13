@@ -20,6 +20,7 @@ class StoreService implements ArticleStoreContract
 
       $model = Article::create(
           $dto->title,
+          $dto->slug,
           $dto->description,
           $dto->shortDescription,
           $dto->mainImage,
