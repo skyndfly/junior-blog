@@ -17,7 +17,7 @@ class Handler
             ->select('title', 'shortDescription', 'slug')
             ->where(['status' => Article::STATUS_PUBLISHED])
             ->orderBy('created_at', 'desc')
-            ->skip(0)
+            ->skip(1)
             ->limit(30)
             ->get();
 
