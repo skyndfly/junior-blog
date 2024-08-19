@@ -16,6 +16,8 @@ use App\View\Components\admin\form\CategorySelect;
 use App\View\Components\admin\messages\AccessDenied;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\Contracts\Index\ShowContract as IndexShowContract;
+use App\Service\Article\MainNews\Handler as MainNewsService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CategoryServiceContract::class, CategoryStoreService::class);
         $this->app->bind(CategoryShowServiceContract::class, CategoryShowService::class);
         $this->app->bind(ArticleStoreContract::class, ArticleStoreService::class);
+        $this->app->bind(IndexShowContract::class, MainNewsService::class );
     }
 
     /**
