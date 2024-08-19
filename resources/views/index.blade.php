@@ -9,11 +9,11 @@
             <a href="" title="Все записи автора"
                class="flex gap-1 items-center text-gray-500 text-base hover:text-purple-800">
                 <i class="fa-solid fa-user"></i>
-                Дмитрий Новосёлов
+                admin
             </a>
             <div class="statistic flex gap-1 items-center text-gray-500 text-sm">
                 <i class="fa-solid fa-eye"></i>
-                55
+                {{$article->created_at}}
             </div>
         </div>
         <a href="" title="Открыть запись" class="text-4xl  hover:text-purple-800">

@@ -10,4 +10,5 @@ final class Dto extends DataTransferObject
     public string $slug;
     public string $shortDescription;
     public string $mainImage;
+    public string $created_at;
 }
