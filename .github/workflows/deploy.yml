@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            cd /junior-blog || exit
+            cd junior-blog || exit
             git pull
             ./vendor/bin/sail up -d
             ./vendor/bin/sail npm run build
