@@ -1,4 +1,5 @@
 @php
+    use Illuminate\Support\Carbon;
     use App\Repository\Article\ShowMainArticle\Dto as ArticleDto;
     /** @var ArticleDto $article */
 @endphp
@@ -13,7 +14,7 @@
             </a>
             <div class="statistic flex gap-1 items-center text-gray-500 text-sm">
                 <i class="fa-solid fa-eye"></i>
-                {{$article->created_at}}
+                {{Carbon::parse($article->created_at)->format('d-m-Y H:i')}}
             </div>
         </div>
         <a href="" title="Открыть запись" class="text-4xl  hover:text-purple-800">

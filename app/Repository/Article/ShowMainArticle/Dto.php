@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class Dto extends DataTransferObject
 {
-    public int $title;
+    public string $title;
     public string $slug;
     public string $shortDescription;
     public string $mainImage;

@@ -37,9 +37,9 @@ class RegisterAdmin extends Command
             'password' => Hash::make($password),
         ]);
         $this->info('Admin registered successfully!');
-        $this->info('Admin details:');
+        $this->warn('Admin details:');
         $this->info('Name: ' . $admin->name);
         $this->info('Email: ' . $admin->email);
-        $this->info('Email: ' . $admin->password);
+        $this->info('Password: ' . $admin->password);
     }
 }
