@@ -17,9 +17,8 @@
                     <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{{ $count }}</dd>
                 </div>
                 <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                    <dt class="text-base leading-7 text-gray-600">Assets under holding</dt>
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">$119
-                        trillion
+                    <dt class="text-base leading-7 text-gray-600">Всего активных записей</dt>
+                    <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">1
                     </dd>
                 </div>
                 <div class="mx-auto flex max-w-xs flex-col gap-y-4">
