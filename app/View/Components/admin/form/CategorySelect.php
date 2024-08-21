@@ -10,11 +10,14 @@ class CategorySelect extends Component
 {
     public array $categories;
     public string $name;
+    public ?int $selected = null;
 
-    public function __construct(array $categories, string $name)
+
+    public function __construct(array $categories, string $name, ?int $selected = null)
     {
         $this->categories = $categories;
         $this->name = $name;
+        $this->selected = $selected;
     }
 
 

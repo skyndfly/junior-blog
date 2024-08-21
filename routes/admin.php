@@ -24,9 +24,13 @@ Route::prefix('lk')->middleware('auth:admin')->group(function () {
     Route::post('/create-category', [CategoryController::class, 'store'])->name('admin.category.store');
 
     //article
-    Route::get('/create-article', [ArticleController::class, 'create'])->name('admin.article.create');
     Route::get('/articles', [ArticleController::class, 'index'])->name('admin.article.index');
     Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('admin.article.show');
+
+    Route::get('/create-article/{article}/edit', [ArticleController::class, 'edit'])->name('admin.article.edit');
+    Route::put('/create-article/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
+
+    Route::get('/create-article', [ArticleController::class, 'create'])->name('admin.article.create');
     Route::post('/create-article', [ArticleController::class, 'store'])->name('admin.article.store');
 
     //ckeditor upload image
