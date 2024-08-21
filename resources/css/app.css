@@ -1,6 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 *{
     box-sizing: border-box;
+}
+.ck-content p{
+    text-indent: 10px;
+}
+.ck-content ul{
+    padding-left: 50px;
+}
+.ck-content h1{
+    font-size: 30px;
+    text-indent: 10px;
+}
+.ck-content h2{
+    font-size: 24px;
+    text-indent: 10px;
+}
+.ck-content h3{
+    font-size: 22px;
+    text-indent: 10px;
 }
