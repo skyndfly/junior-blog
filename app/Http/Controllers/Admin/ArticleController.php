@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Admin\Article\UpdateServiceContract as UpdateService;
 use App\Helpers\UploadImageHelper;
 use App\Http\Controllers\Controller;
 use App\Contracts\Admin\CategoryShowServiceContract as CategoryShowService;
 use App\Contracts\Admin\Article\ArticleStoreContract as ArticleStoreService;
 use App\Http\Requests\Admin\Article\StoreRequest;
+use App\Http\Requests\Admin\Article\UpdateRequest;
 use App\Models\Article;
 use DomainException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Service\Admin\Article\Show\Dto as ArticleShowDto;
 use App\Service\Admin\Category\Show\Dto as CategoryShowDto;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 use App\Service\Admin\Article\Store\StoreDto as StoreDto;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -57,7 +61,11 @@ class ArticleController extends Controller
     public function show(Article $article): View
     {
         $category = new CategoryShowDto($article->category->toArray());
-        $data = new ArticleShowDto(array_merge($article->toArray(), ['category' => $category->name]));
+        $categoryName = '';
+        if (!empty($category->name)) {
+            $categoryName = $category->name;
+        }
+        $data = new ArticleShowDto(array_merge($article->toArray(), ['category' => $categoryName]));
         return view('admin.article.show', [
             'article' => $data,
             'category' => $category
@@ -69,5 +77,43 @@ class ArticleController extends Controller
         return view('admin.article.index', [
             'articles' => $handler->handle()->getItems(),
         ]);
+    }
+
+    /**
+     * @throws UnknownProperties
+     */
+    public function edit(Article $article, CategoryShowService $categoryShowService): View
+    {
+        $category = new CategoryShowDto($article->category->toArray());
+        $categoryName = '';
+        if (!empty($category->name)) {
+            $categoryName = $category->name;
+        }
+        $data = new ArticleShowDto(array_merge($article->toArray(), ['category' => $categoryName]));
+        $collection = $categoryShowService->handle();
+        return view('admin.article.edit', [
+            'article' => $data,
+            'category' => $category,
+            'categories' => $collection
+        ]);
+    }
+
+
+    public function update(Article $article, UpdateRequest $request, UpdateService $service): RedirectResponse
+    {
+        try {
+            DB::beginTransaction();
+            $service->handle($article, $request);
+            $request->session()->flash('success', 'Запись сохранена.');
+            DB::commit();
+        } catch (DomainException $e) {
+            DB::rollBack();
+            $uuid = Uuid::uuid4();
+            $message = "{$e->getMessage()}. Error code - {$uuid}";
+            $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
+            $request->session()->flash('error', "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}");
+            Log::error($logMessage);
+        }
+        return to_route('admin.article.show', $article->slug);
     }
 }

@@ -68,15 +68,15 @@
                                 class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-red-600/20">Черновик</span>
                         @endif
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 flex">
                         <a href="{{route('admin.article.show', $item->slug)}}"
                            class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                             Просмотр
                         </a>
-                        <button type="button"
+                        <a href="{{route('admin.article.edit', $item->slug)}}"
                                 class="text-yellow-600 hover:text-white border border-yellow-600 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
                             Редактировать
-                        </button>
+                        </a>
                         <button type="button"
                                 class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                             Удалить

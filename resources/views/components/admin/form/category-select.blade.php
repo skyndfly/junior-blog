@@ -1,7 +1,8 @@
 @php
-    use App\Service\Admin\Category\ShowForSelect\Dto\Dto;
+   use App\Service\Admin\Category\ShowForSelect\Dto\Dto;
     /** @var Dto[] $categories */
     /** @var string $name */
+    /** @var int $selected */
 @endphp
 <div class="w-full">
     <label for="{{$name}}" class="block text-sm font-medium leading-6 text-gray-900">Категория</label>
@@ -17,7 +18,12 @@
                 <option value="">Нет</option>
                 @if(!empty($categories))
                     @foreach($categories as $cat)
-                        <option value="{{$cat->id}}">{{str_repeat('- ', $cat->level)}}{{$cat->name}}</option>
+                        <option
+                            value="{{$cat->id}}"
+                            {{($selected !== null && $selected === $cat->id) ? ' selected' : ''}}
+                        >
+                            {{str_repeat('- ', $cat->level)}}{{$cat->name}}
+                        </option>
                     @endforeach
                 @endif
             </select>
