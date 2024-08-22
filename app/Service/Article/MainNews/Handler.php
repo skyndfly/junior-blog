@@ -19,7 +19,7 @@ class Handler implements ShowContract
     /**
      * @throws UnknownProperties
      */
-    public function handle(): ShowMainArticleDto
+    public function handle(): ?ShowMainArticleDto
     {
         return $this->query->execute();
     }
