@@ -139,8 +139,8 @@
         </form>
     @endif
 @endsection
-@section('scripts')
-    @vite('resources/js/admin/title-length.js')
-    @vite('resources/js/admin/shortDescription-length.js')
-    @vite('resources/js/admin/slug-transform.js')
-@endsection
+{{--@section('scripts')--}}
+{{--    @vite('resources/js/admin/title-length.js')--}}
+{{--    @vite('resources/js/admin/shortDescription-length.js')--}}
+{{--    @vite('resources/js/admin/slug-transform.js')--}}
+{{--@endsection--}}
