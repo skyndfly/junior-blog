@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-          docker exec junior-blog-mysql-1 mysqldump -u sail -p'password' laravel > /home/sky/backups/db_backup_$(date +%F_%T).sql
+          docker exec junior-blog-mysql-1 mysqldump -u sail -p'password' laravel > backups/db_backup_$(date +%F_%T).sql
             cd junior-blog || exit
             git pull
             ./vendor/bin/sail up -d
