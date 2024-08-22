@@ -9,5 +9,5 @@ interface ShowContract
 {
     public function __construct(ShowMainArticleQuery $query);
 
-    public function handle(): ShowMainArticleDto;
+    public function handle(): ?ShowMainArticleDto;
 }

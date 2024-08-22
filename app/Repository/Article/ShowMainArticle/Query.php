@@ -10,12 +10,15 @@ final class Query
     /**
      * @throws UnknownProperties
      */
-    public function execute(): Dto
+    public function execute(): ?Dto
     {
        $data = Article::query()
            ->where(['status' => Article::STATUS_PUBLISHED])
            ->orderBy('created_at', 'desc')
            ->first();
+       if ($data === null){
+           return null;
+       }
        return new Dto($data->toArray());
     }
 }
