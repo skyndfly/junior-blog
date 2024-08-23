@@ -33,12 +33,18 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                         class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text" name="title" id="title" autocomplete="name"
+                            type="text"
+                            name="title"
+                            id="title"
+                            autocomplete="name"
                             class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder="Новая запись..."
                             value="{{old('title', $article->title)}}"
                         >
                     </div>
+                    <p class="text-sm my-2 text-teal-700">
+                        Осталось символов: <span id="titleCharsCountDisplay">140</span>
+                    </p>
                     <div class="text-red-500">
                         @error('title')
                         {{$message}}
@@ -53,7 +59,10 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                         class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text" name="slug" id="slug" autocomplete="name"
+                            type="text"
+                            name="slug"
+                            id="slug"
+                            autocomplete="name"
                             class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder="Новая запись..."
                             value="{{old('slug', $article->slug)}}"
@@ -95,12 +104,17 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                         class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text" name="shortDescription" id="name" autocomplete="name"
+                            type="text"
+                            name="shortDescription"
+                            id="shortDescription"
                             class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder="Новая запись..."
                             value="{{old('shortDescription', $article->shortDescription)}}"
                         >
                     </div>
+                    <p class="text-sm my-2 text-teal-700">
+                        Осталось символов: <span id="shortDescriptionCharsCountDisplay">250</span>
+                    </p>
                     <div class="text-red-500">
                         @error('shortDescription')
                         {{$message}}
@@ -139,10 +153,17 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                 <span class="ms-3 text-sm font-medium text-gray-900 ">Активна?</span>
             </label>
 
-            <button type="submit"
-                    class="bg-teal-600 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded w-[200px]">
-                Создать
+            <button
+                type="submit"
+                class="bg-teal-600 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded w-[200px]"
+            >
+                Сохранитья
             </button>
         </form>
     @endif
+@endsection
+@section('scripts')
+    @vite('resources/js/admin/title-length.js')
+    @vite('resources/js/admin/shortDescription-length.js')
+    @vite('resources/js/admin/slug-transform.js')
 @endsection

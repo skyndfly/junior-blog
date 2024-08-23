@@ -30,6 +30,7 @@
                                name="title"
                                id="title"
                                autocomplete="name"
+                               value="{{old('title')}}"
                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                placeholder="Новая запись..."
                         >
@@ -38,11 +39,11 @@
                     <p class="text-sm my-2 text-teal-700">
                         Осталось символов: <span id="titleCharsCountDisplay">140</span>
                     </p>
-                   <div class="text-red-500">
-                       @error('title')
-                       {{$message}}
-                       @enderror
-                   </div>
+                    <div class="text-red-500">
+                        @error('title')
+                        {{$message}}
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="w-full">
@@ -55,6 +56,7 @@
                             type="text"
                             name="slug"
                             id="slug"
+                            value="{{old('slug')}}"
                             class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder="Новая запись..."
                         >
@@ -75,7 +77,9 @@
                     <textarea
                         class="block w-full min-h-[500px] border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         name="description" id="description"
-                    ></textarea>
+                    >
+                        {{old('description')}}
+                    </textarea>
                     </div>
                     <div class="text-red-500">
                         @error('description')
@@ -91,9 +95,14 @@
                     <div
                         class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
-                        <input type="text" name="shortDescription" id="shortDescription" autocomplete="name"
-                               class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                               placeholder="Новая запись...">
+                        <input
+                            type="text"
+                            name="shortDescription"
+                            id="shortDescription"
+                            value="{{old('shortDescription')}}"
+                            class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            placeholder="Новая запись..."
+                        >
                     </div>
                     <p class="text-sm my-2 text-teal-700">
                         Осталось символов: <span id="shortDescriptionCharsCountDisplay">250</span>
@@ -139,8 +148,8 @@
         </form>
     @endif
 @endsection
-{{--@section('scripts')--}}
-{{--    @vite('resources/js/admin/title-length.js')--}}
-{{--    @vite('resources/js/admin/shortDescription-length.js')--}}
-{{--    @vite('resources/js/admin/slug-transform.js')--}}
-{{--@endsection--}}
+@section('scripts')
+    @vite('resources/js/admin/title-length.js')
+    @vite('resources/js/admin/shortDescription-length.js')
+    @vite('resources/js/admin/slug-transform.js')
+@endsection
