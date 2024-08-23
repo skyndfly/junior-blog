@@ -12,7 +12,10 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/js/app.js',
-                'resources/js/admin/app.js'
+                'resources/js/admin/app.js',
+                'resources/js/admin/title-length.js',
+                'resources/js/admin/shortDescription-length.js',
+                'resources/js/admin/slug-transform.js'
             ],
             refresh: true,
         }),
