@@ -16,7 +16,8 @@ export default {
             },
             gridTemplateColumns: {
                 'table': '10fr 3fr',
-                'admin': '2fr 10fr'
+                'admin': '2fr 10fr',
+                'category': '2fr 10fr',
             }
         }
     },
