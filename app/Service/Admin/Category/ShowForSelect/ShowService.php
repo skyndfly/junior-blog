@@ -3,6 +3,7 @@
 namespace App\Service\Admin\Category\ShowForSelect;
 
 use App\Contracts\Admin\CategoryShowServiceContract;
+use App\Models\Category;
 use App\Repository\Admin\CategoryRepository;
 use App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto;
 use App\Service\Admin\Category\ShowForSelect\Dto\Dto;
@@ -20,9 +21,7 @@ class ShowService implements CategoryShowServiceContract
     public function handle(): CollectionDto
     {
         $categories = $this->repository->getActiveAsCollection();
-        foreach ($categories as $category) {
-            $category->level = $this->getCategoryLevel($categories, $category);
-        }
+
         $collection = new CollectionDto();
         foreach ($categories as $category) {
             $collection->setItem(new Dto(
@@ -35,13 +34,4 @@ class ShowService implements CategoryShowServiceContract
         return $collection;
     }
 
-    private function getCategoryLevel($categories, $category): int
-    {
-        $level = 0;
-        while ($category->parentId != null) {
-            $category = $categories[$category->parentId];
-            $level++;
-        }
-        return $level;
-    }
 }

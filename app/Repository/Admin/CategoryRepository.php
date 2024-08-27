@@ -24,7 +24,21 @@ class CategoryRepository
             ->where(['status' => Category::STATUS_ACTIVE])
             ->get();
 
-        return collect($categories)->keyBy('id');
+        return collect($this->sortAndAddLevel($categories))->keyBy('id');
+    }
+
+    function sortAndAddLevel(Collection $elements, $parentId = null, $level = 0) {
+        $result = collect();
+
+        $children = $elements->where('parentId', $parentId);
+
+        foreach ($children as $child) {
+            $child->level = $level;
+            $result->push($child);
+            $result = $result->merge($this->sortAndAddLevel($elements, $child->id, $level + 1));
+        }
+
+        return $result;
     }
 
     public function getAllPaginate(): LengthAwarePaginator
