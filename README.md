@@ -24,6 +24,8 @@
     - ```./sail npm install```
     - ```./sail npm run **build**``` 
         - or ./sail npm run **dev** (❓bug)
+- db init
+    - ```./sail artisan migrate```  
 - access to site
     - ```./sail open```
     - or manuall http://0.0.0.0:1341/lk
