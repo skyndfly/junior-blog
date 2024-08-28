@@ -3,11 +3,9 @@
 namespace App\Service\Admin\Category\ShowForSelect;
 
 use App\Contracts\Admin\CategoryShowServiceContract;
-use App\Models\Category;
 use App\Repository\Admin\CategoryRepository;
 use App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto;
 use App\Service\Admin\Category\ShowForSelect\Dto\Dto;
-use Illuminate\Support\Collection;
 
 class ShowService implements CategoryShowServiceContract
 {
