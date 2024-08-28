@@ -26,7 +26,11 @@
     <div class="px-2 py-4">
         <div class="container mx-auto ">
             <h2 class="text-2xl font-bold mb-4" id="comments">Комментарии - 4</h2>
-            @include('article.comment-form', ['id' => $article->id])
+            @if(auth()->guest())
+                @include('article.guest-comment-form', ['id' => $article->id])
+            @else
+                @include('article.auth-comment-form', ['id' => $article->id])
+            @endif
         </div>
     </div>
 

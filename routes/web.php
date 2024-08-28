@@ -16,7 +16,8 @@ Route::get('/dashboard', function () { return view('dashboard');})->middleware([
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('article.show');
 
 //comments
-Route::post('/articles/add-comment', [CommentsController::class, 'storeGuest'])->name('comments.store.guest');
+Route::post('/articles/add-comment-guest', [CommentsController::class, 'storeGuest'])->name('comments.store.guest');
+Route::post('/articles/add-comment-auth', [CommentsController::class, 'storeAuth'])->name('comments.store.auth');
 
 Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

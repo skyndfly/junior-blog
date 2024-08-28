@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Comments\CommentsStoreRequest;
 use App\Service\Comment\StoreGuest\Dto as CommentStoreDto;
 use DomainException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -15,7 +17,7 @@ class CommentsController extends Controller
     /**
      * @throws UnknownProperties
      */
-    public function storeGuest(CommentsStoreRequest $request, CommentsStoreGuestService $service)
+    public function storeGuest(CommentsStoreRequest $request, CommentsStoreGuestService $service): RedirectResponse
     {
         try {
             $data = new CommentStoreDto($request->validated());
@@ -29,5 +31,11 @@ class CommentsController extends Controller
             Log::error($logMessage);
         }
         return redirect()->to(url()->previous() . "#comments");
+    }
+
+    public function storeAuth(Request $request)
+    {
+
+        return response()->json(['message' => $request->toArray()], 200);
     }
 }
