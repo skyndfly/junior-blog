@@ -5,7 +5,7 @@ namespace App\Http\Requests\Comments;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentsStoreRequest extends FormRequest
+class CommentsGuestStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

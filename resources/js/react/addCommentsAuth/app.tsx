@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom/client';
 import Form from "./Components/Form";
 
 const App: React.FC = () => {
+    const appElement = document.getElementById('app');
+    const id = appElement?.getAttribute('data-id');
+    const name = appElement?.getAttribute('data-name');
     return (
-        <Form />
+        <Form id={id} name={name} />
     );
 };
 

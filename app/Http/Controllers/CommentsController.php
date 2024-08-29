@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Comments\CommentsStoreRequest;
-use App\Service\Comment\StoreGuest\Dto as CommentStoreDto;
+use App\Http\Requests\Comments\CommentsAuthStoreRequest;
+use App\Http\Requests\Comments\CommentsGuestStoreRequest;
+use App\Service\Comment\StoreGuest\Dto as CommentStoreGuestDto;
 use DomainException;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Service\Comment\StoreAuth\Dto as CommentsStoreAuthDto;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -17,10 +20,10 @@ class CommentsController extends Controller
     /**
      * @throws UnknownProperties
      */
-    public function storeGuest(CommentsStoreRequest $request, CommentsStoreGuestService $service): RedirectResponse
+    public function storeGuest(CommentsGuestStoreRequest $request, CommentsStoreGuestService $service): RedirectResponse
     {
         try {
-            $data = new CommentStoreDto($request->validated());
+            $data = new CommentStoreGuestDto($request->validated());
             $service->handle($data);
             $request->session()->flash('success', 'Комментарий отправлен.');
         } catch (DomainException|UnknownProperties $e) {
@@ -33,9 +36,18 @@ class CommentsController extends Controller
         return redirect()->to(url()->previous() . "#comments");
     }
 
-    public function storeAuth(Request $request)
+    public function storeAuth(CommentsAuthStoreRequest $request): JsonResponse
     {
-
-        return response()->json(['message' => $request->toArray()], 200);
+        try {
+            $data = new CommentsStoreAuthDto($request->validated());
+//            return response()->json(['message' => $data], 200);
+            return response()->json(['message' => "Комментарий добавлен"], 200);
+        }catch (HttpResponseException|UnknownProperties $e){
+            $uuid = Uuid::uuid4();
+            $message = "{$e->getMessage()}. Error code - {$uuid}";
+            $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
+            Log::error($logMessage);
+            return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}"], 400);
+        }
     }
 }
