@@ -1,27 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Form from "./Components/Form";
 
 const App: React.FC = () => {
     const appElement = document.getElementById('app');
-    const id = appElement?.getAttribute('data-id');
-    const name = appElement?.getAttribute('data-name');
+    const id = appElement?.getAttribute('data-id') || '';
+    const name = appElement?.getAttribute('data-name') || '';
     const [comment, setComment] = useState<string>('');
     const [errorStatus, setErrorStatus] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const [responseError, setResponseError] = useState<string>('');
     const [alertType, setAlertType] = useState<'success' | 'error'>('error');
     const [alertOpen, setAlertOpen] = useState<boolean>(false);
-    const handleChangeComment = (e) => {
+
+    const handleChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setComment(e.target.value);
         setErrorStatus(false);
     }
+
     const handleResponse = async (response: Response) => {
         const data = await response.json();
         setResponseError(data['message']);
         setAlertOpen(true);
         setAlertType(!response.ok ? 'error' : 'success');
-        console.log(data)
+        console.log(data);
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,10 +38,11 @@ const App: React.FC = () => {
             setErrorStatus(true);
             return;
         }
+
         const formData = new FormData();
         formData.append('comment', comment);
-        formData.append('id', id ?? '');
-        formData.append('name', name ?? '');
+        formData.append('id', id);
+        formData.append('name', name);
 
         try {
             const response = await fetch('/articles/add-comment-auth', {
@@ -50,9 +53,8 @@ const App: React.FC = () => {
                 }
             });
             await handleResponse(response);
-
         } catch (error) {
-            setError('Ошибка при отправке комментария');
+            setError('Ошибка при отправке комментария. Пожалуйста, попробуйте еще раз.');
         }
     }
 
@@ -71,4 +73,4 @@ const App: React.FC = () => {
 };
 
 const root = ReactDOM.createRoot(document.getElementById('app') as HTMLElement);
-root.render(<App/>);
+root.render(<App />);
