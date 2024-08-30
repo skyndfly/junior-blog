@@ -6,6 +6,7 @@ use App\Contracts\Admin\Article\ArticleStoreContract;
 use App\Contracts\Admin\Article\UpdateServiceContract;
 use App\Contracts\Admin\CategoryServiceContract;
 use App\Contracts\Admin\CategoryShowServiceContract;
+use App\Contracts\Comments\CommentsStoreAuthServiceContract;
 use App\Contracts\Comments\CommentsStoreGuestServiceContract;
 use App\Service\Admin\Article\Store\StoreService as ArticleStoreService;
 use App\Service\Admin\Article\Update\UpdateService as ArticleUpdateService;
@@ -22,6 +23,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Contracts\Index\ShowContract as IndexShowContract;
 use App\Service\Article\MainNews\Handler as MainNewsService;
 use App\Service\Comment\StoreGuest\Handler as CommentStoreGuestService;
+use App\Service\Comment\StoreAuth\Handler as CommentStoreAuthService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IndexShowContract::class, MainNewsService::class);
         $this->app->bind(UpdateServiceContract::class, ArticleUpdateService::class);
         $this->app->bind(CommentsStoreGuestServiceContract::class, CommentStoreGuestService::class);
+        $this->app->bind(CommentsStoreAuthServiceContract::class, CommentStoreAuthService::class);
 
     }
 

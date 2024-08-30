@@ -4,7 +4,7 @@ namespace App\Service\Comment\StoreAuth;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class Dto extends DataTransferObject
+final class Dto extends DataTransferObject
 {
     public int $id;
     public string $name;

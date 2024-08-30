@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Service\Comment\StoreGuest;
+namespace App\Service\Comment\StoreAuth;
 
+use App\Contracts\Comments\CommentsStoreAuthServiceContract;
 use App\Models\Comments;
 use App\Repository\Comments\Store\Query;
-use App\Contracts\Comments\CommentsStoreGuestServiceContract;
 
-final class Handler implements CommentsStoreGuestServiceContract
+final class Handler implements CommentsStoreAuthServiceContract
 {
     private Query $query;
 
@@ -19,9 +19,9 @@ final class Handler implements CommentsStoreGuestServiceContract
     {
         $model = Comments::create(
             $dto->comment,
-            $dto->email,
+            $dto->name,
             $dto->id,
-            Comments::STATUS_UNPUBLISHED
+            Comments::STATUS_PUBLISHED
         );
         $this->query->fetch($model);
     }

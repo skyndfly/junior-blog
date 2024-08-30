@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Comments\CommentsStoreAuthServiceContract as CommentsStoreAuthService;
 use App\Http\Requests\Comments\CommentsAuthStoreRequest;
 use App\Http\Requests\Comments\CommentsGuestStoreRequest;
 use App\Service\Comment\StoreGuest\Dto as CommentStoreGuestDto;
@@ -36,18 +37,20 @@ class CommentsController extends Controller
         return redirect()->to(url()->previous() . "#comments");
     }
 
-    public function storeAuth(CommentsAuthStoreRequest $request): JsonResponse
+    public function storeAuth(CommentsAuthStoreRequest $request, CommentsStoreAuthService $service): JsonResponse
     {
         try {
             $data = new CommentsStoreAuthDto($request->validated());
-//            return response()->json(['message' => $data], 200);
-            return response()->json(['message' => "Комментарий добавлен"], 200);
+
+            $service->handle($data);
+
+            return response()->json(['message' => "Комментарий добавлен."], 200);
         }catch (HttpResponseException|UnknownProperties $e){
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
             $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
             Log::error($logMessage);
-            return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}"], 400);
+            return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}."], 400);
         }
     }
 }
