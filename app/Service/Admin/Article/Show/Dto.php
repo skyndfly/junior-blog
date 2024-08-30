@@ -16,6 +16,6 @@ class Dto extends DataTransferObject
     public ?string $status = null;
     public string $category;
     public int $categoryId;
-    public Admin $admin;
+    public ?Admin $admin;
 
 }

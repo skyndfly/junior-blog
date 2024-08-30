@@ -24,7 +24,7 @@ class StoreService implements ArticleStoreContract
           $dto->description,
           $dto->shortDescription,
           $dto->mainImage,
-          Article::STATUS_PUBLISHED,
+          $dto->status,
           $dto->categoryId,
           $dto->admin_id
       );
