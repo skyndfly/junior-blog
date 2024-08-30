@@ -29,6 +29,14 @@ class StoreRequest extends FormRequest
             'shortDescription' => 'required|max:250',
             'mainImage' => 'required|image|mimes:jpg,jpeg,png',
             'categoryId' => 'required|integer|exists:categories,id',
+            'admin_id' => 'required|integer|exists:admins,id',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'admin_id' => auth()->guard('admin')->id(),
+        ]);
     }
 }

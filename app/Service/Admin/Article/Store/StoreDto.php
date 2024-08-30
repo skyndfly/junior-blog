@@ -13,5 +13,6 @@ class StoreDto extends DataTransferObject
     public ?string $mainImage = null;
     public ?string $status = null;
     public ?int $categoryId = null;
+    public ?int $admin_id = null;
 
 }

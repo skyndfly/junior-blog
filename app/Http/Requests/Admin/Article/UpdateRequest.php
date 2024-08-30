@@ -29,7 +29,16 @@ class UpdateRequest extends FormRequest
             'shortDescription' => 'required|max:250',
             'mainImage' => 'nullable|image|mimes:jpg,jpeg,png',
             'categoryId' => 'required|integer|exists:categories,id',
-            'status' => 'required|string'
+            'status' => 'required|string',
+            'admin_id' => 'required|integer|exists:admins,id',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'admin_id' => auth()->guard('admin')->id(),
+            'status' => $this->get('status') ?? 'disabled',
+        ]);
     }
 }
