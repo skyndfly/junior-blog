@@ -3,12 +3,14 @@
 - git clone ...
 - composer install
 
+```
     docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
     laravelsail/php83-composer:latest \
     composer install --ignore-platform-reqs
+```
 
 - copy .env config
   - ```cp .env.example .env```
@@ -32,7 +34,6 @@
 # настройка dev-окружения
 
 ## ОБЯЗАТЕЛЬНО: форматирование кода для команды
-
 - стандарт: PSR12
 - из коробки установлен Laravel Pint
 - надо настроить IDE на форматирование при commit
@@ -47,9 +48,11 @@ domain in server.hmr.host - if commented out, styles will work
 
 ## mysql start error on ./sail up (fixed #57)
 
-    mysql-1         | 2024-08-28T14:48:18.639935Z 0 [ERROR] [MY-010259] [Server] Another process with pid 62 is using unix socket file.
-    mysql-1         | 2024-08-28T14:48:18.639947Z 0 [ERROR] [MY-010268] [Server] Unable to setup unix socket lock file.
-    mysql-1         | 2024-08-28T14:48:18.639951Z 0 [ERROR] [MY-010119] [Server] Aborting
+```
+mysql-1         | 2024-08-28T14:48:18.639935Z 0 [ERROR] [MY-010259] [Server] Another process with pid 62 is using unix socket file.
+mysql-1         | 2024-08-28T14:48:18.639947Z 0 [ERROR] [MY-010268] [Server] Unable to setup unix socket lock file.
+mysql-1         | 2024-08-28T14:48:18.639951Z 0 [ERROR] [MY-010119] [Server] Aborting
+```
 
 solution: in ```docker-compose.yml``` set ```MYSQL_ROOT_HOST:``` to ```'mysql'```
 
@@ -60,7 +63,9 @@ solution: add user manually
 - login to mysql container
 - mysql -u root -p
 
-    CREATE USER 'sail'@'%' IDENTIFIED BY 'password'; 
-    GRANT ALL PRIVILEGES ON laravel.* TO 'sail'@'%';
-    FLUSH PRIVILEGES;
+```
+CREATE USER 'sail'@'%' IDENTIFIED BY 'password'; 
+GRANT ALL PRIVILEGES ON laravel.* TO 'sail'@'%';
+FLUSH PRIVILEGES;
+```
 
