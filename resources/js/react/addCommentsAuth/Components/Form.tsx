@@ -2,67 +2,19 @@ import React, {useState} from "react";
 import Alert from "./Alert";
 
 interface FormProps {
-    id: string | null | undefined;
-    name: string | null | undefined;
+    alertType: 'success' | 'error';
+    errorStatus: boolean;
+    error: string;
+    responseError: string;
+    alertOpen: boolean;
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    handleChangeComment: (e) => void;
+    setAlertOpen: (boolean) => void;
 }
 
-const Form: React.FC<FormProps> = ({id, name}) => {
-    const [comment, setComment] = useState<string>('');
-    const [errorStatus, setErrorStatus] = useState<boolean>(false);
-    const [error, setError] = useState<string>('');
-    const [responseError, setResponseError] = useState<string>('');
-    const [alertOpen, setAlertOpen] = useState<boolean>(false);
-    const [alertType, setAlertType] = useState<'success' | 'error'>('error');
+const Form: React.FC<FormProps> = ({alertType, errorStatus, error, responseError, alertOpen, handleSubmit, handleChangeComment, setAlertOpen}) => {
 
 
-    const handleChangeComment = (e) => {
-        setComment(e.target.value);
-        setErrorStatus(false);
-    }
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (comment.trim() === '') {
-            setError('Комментарий не может быть пустым.');
-            setErrorStatus(true);
-            return;
-        }
-        if (comment.length < 3) {
-            setError('Комментарий должен содержать не менее 3 символов.');
-            setErrorStatus(true);
-            return;
-        }
-        const formData = new FormData();
-        formData.append('comment', comment);
-        formData.append('id', id);
-        formData.append('name', name);
-
-        try {
-            const response = await fetch('/articles/add-comment-auth', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
-                }
-            });
-            if (!response.ok) {
-                const data = await response.json();
-                setResponseError(data['message']);
-                setAlertOpen(true);
-                setAlertType('error');
-                console.log(data)
-            } else {
-                const data = await response.json();
-                setResponseError(data['message']);
-                setAlertOpen(true);
-                setAlertType('success')
-                console.log(data)
-
-            }
-
-        } catch (error) {
-            setError('Ошибка при отправке комментария');
-        }
-    }
     return (
         <>
             <form action="" method="post" onSubmit={handleSubmit}>
