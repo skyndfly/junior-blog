@@ -15,7 +15,7 @@ interface CommentsProps {
 const Comments: React.FC<CommentsProps> = ({ comments, loading }) => {
     return (
         <>
-            <div className="">
+            <div className="" style={{minHeight: "400px"}}>
                 {comments.map((comment) => (
                     <div key={comment.id} style={{ height: '100px', backgroundColor: "gray" }}>
                         {comment.id} - {comment.name}: {comment.comment}

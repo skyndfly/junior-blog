@@ -54,11 +54,13 @@ class CommentsController extends Controller
             return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}."], 400);
         }
     }
-
     public function getAllPaginate(): JsonResponse
     {
         $perPage = 10; // Количество комментариев на страницу
-        $comments = Comments::paginate($perPage);
+
+        $comments = Comments::select('id', 'name', 'comment', 'created_at')
+        ->orderBy('created_at', 'desc')
+        ->paginate($perPage);
 
         return response()->json($comments);
     }

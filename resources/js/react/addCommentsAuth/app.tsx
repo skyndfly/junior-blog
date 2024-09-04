@@ -74,6 +74,14 @@ const App: React.FC = () => {
         setResponseError(data['message']);
         setAlertOpen(true);
         setAlertType(!response.ok ? 'error' : 'success');
+        // Если комментарий добавлен успешно, обновляем список комментариев
+        if (response.ok) {
+            // После успешного добавления комментария, получаем новые комментарии из базы данных
+            setComments([]);
+            setLoading(true);
+            await fetchComments(1); // Загрузить первый набор комментариев
+            setComment(''); // Очищаем поле ввода
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
