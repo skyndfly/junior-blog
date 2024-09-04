@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import Form from "./Components/Form";
+import Form from "./components/Form";
+import Comments from "./components/Comments";
+
+interface Comment {
+    id: number;
+    name: string;
+    comment: string;
+}
 
 const App: React.FC = () => {
     const appElement = document.getElementById('app');
@@ -12,19 +19,62 @@ const App: React.FC = () => {
     const [responseError, setResponseError] = useState<string>('');
     const [alertType, setAlertType] = useState<'success' | 'error'>('error');
     const [alertOpen, setAlertOpen] = useState<boolean>(false);
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [page, setPage] = useState<number>(1);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [hasMore, setHasMore] = useState<boolean>(true);
+
+    const fetchComments = async (page: number) => {
+        setLoading(true);
+        try {
+            const response = await fetch(`/comments/get-all-paginate?page=${page}`);
+            const data = await response.json();
+            if (data.last_page === page) {
+                setHasMore(false);
+            }
+                setComments((prev) => [...prev, ...data.data]);
+
+        } catch (error) {
+            setResponseError('Ошибка загрузки комментариев.');
+            setAlertOpen(true);
+            setAlertType('error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchComments(page);
+    }, [page]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+
+            if (documentHeight - (scrollY + windowHeight) <= 50 && hasMore && !loading) {
+                setPage((prev) => prev + 1);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [hasMore, loading]);
 
     const handleChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setComment(e.target.value);
         setErrorStatus(false);
-    }
+    };
 
     const handleResponse = async (response: Response) => {
         const data = await response.json();
         setResponseError(data['message']);
         setAlertOpen(true);
         setAlertType(!response.ok ? 'error' : 'success');
-        console.log(data);
-    }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,7 +95,7 @@ const App: React.FC = () => {
         formData.append('name', name);
 
         try {
-            const response = await fetch('/articles/add-comment-auth', {
+            const response = await fetch('/comments/add-comment-auth', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -56,19 +106,26 @@ const App: React.FC = () => {
         } catch (error) {
             setError('Ошибка при отправке комментария. Пожалуйста, попробуйте еще раз.');
         }
-    }
+    };
 
     return (
-        <Form
-            alertType={alertType}
-            errorStatus={errorStatus}
-            error={error}
-            responseError={responseError}
-            alertOpen={alertOpen}
-            handleSubmit={handleSubmit}
-            handleChangeComment={handleChangeComment}
-            setAlertOpen={setAlertOpen}
-        />
+        <>
+            <Form
+                alertType={alertType}
+                errorStatus={errorStatus}
+                error={error}
+                responseError={responseError}
+                alertOpen={alertOpen}
+                handleSubmit={handleSubmit}
+                handleChangeComment={handleChangeComment}
+                setAlertOpen={setAlertOpen}
+            />
+            <Comments
+                comments={comments}
+                loading={loading}
+                hasMore={hasMore}
+            />
+        </>
     );
 };
 

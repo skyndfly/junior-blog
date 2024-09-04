@@ -1,5 +1,5 @@
 import React from "react";
-import Alert from "./Alert";
+import Alert from "../../ui/components/Alert";
 
 interface FormProps {
     alertType: 'success' | 'error';

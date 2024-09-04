@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Comments\CommentsStoreAuthServiceContract as CommentsStoreAuthService;
 use App\Http\Requests\Comments\CommentsAuthStoreRequest;
 use App\Http\Requests\Comments\CommentsGuestStoreRequest;
+use App\Models\Comments;
 use App\Service\Comment\StoreGuest\Dto as CommentStoreGuestDto;
 use DomainException;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -52,5 +53,13 @@ class CommentsController extends Controller
             Log::error($logMessage);
             return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}."], 400);
         }
+    }
+
+    public function getAllPaginate(): JsonResponse
+    {
+        $perPage = 10; // Количество комментариев на страницу
+        $comments = Comments::paginate($perPage);
+
+        return response()->json($comments);
     }
 }
