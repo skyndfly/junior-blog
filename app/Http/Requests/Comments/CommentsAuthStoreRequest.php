@@ -29,7 +29,7 @@ class CommentsAuthStoreRequest extends FormRequest
         return [
             'comment' => 'required|string',
             'id' => 'required|exists:articles,id',
-            'name' => 'required|string',
+            'userId' => 'required',
         ];
     }
     protected function failedValidation(Validator $validator)

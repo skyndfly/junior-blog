@@ -58,9 +58,18 @@ class CommentsController extends Controller
     {
         $perPage = 10; // Количество комментариев на страницу
 
-        $comments = Comments::select('id', 'name', 'comment', 'created_at')
+        $comments = Comments::select('id', 'user_id', 'comment', 'created_at')
         ->orderBy('created_at', 'desc')
         ->paginate($perPage);
+
+        $comments->transform(function ($comment) {
+            return [
+                'id' => $comment->id,
+                'name' => $comment->user->name, // Получаем имя пользователя
+                'comment' => $comment->comment,
+                'created_at' => $comment->created_at,
+            ];
+        });
 
         return response()->json($comments);
     }

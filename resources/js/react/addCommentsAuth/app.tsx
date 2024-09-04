@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Form from "./components/Form";
 import Comments from "./components/Comments";
@@ -12,7 +12,7 @@ interface Comment {
 const App: React.FC = () => {
     const appElement = document.getElementById('app');
     const id = appElement?.getAttribute('data-id') || '';
-    const name = appElement?.getAttribute('data-name') || '';
+    const userId = appElement?.getAttribute('data-user-id') || '';
     const [comment, setComment] = useState<string>('');
     const [errorStatus, setErrorStatus] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
@@ -100,7 +100,7 @@ const App: React.FC = () => {
         const formData = new FormData();
         formData.append('comment', comment);
         formData.append('id', id);
-        formData.append('name', name);
+        formData.append('userId', userId);
 
         try {
             const response = await fetch('/comments/add-comment-auth', {

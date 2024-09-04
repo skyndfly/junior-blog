@@ -19,7 +19,7 @@ final class Handler implements CommentsStoreAuthServiceContract
     {
         $model = Comments::create(
             $dto->comment,
-            $dto->name,
+            $dto->userId,
             $dto->id,
             Comments::STATUS_PUBLISHED
         );

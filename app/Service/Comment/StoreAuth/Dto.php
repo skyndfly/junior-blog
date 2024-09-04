@@ -7,6 +7,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class Dto extends DataTransferObject
 {
     public int $id;
-    public string $name;
+    public int $userId;
     public string $comment;
 }

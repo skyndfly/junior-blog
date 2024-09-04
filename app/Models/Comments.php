@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comments extends Model
 {
@@ -15,7 +16,7 @@ class Comments extends Model
 
     public static function create(
         string $comment,
-        string $name,
+        int $userId,
         int $articleId,
         string $status,
         ?int $parentId = null
@@ -23,10 +24,15 @@ class Comments extends Model
     {
         $model = new self();
         $model['comment'] = $comment;
-        $model['name'] = $name;
-        $model['articleId'] = $articleId;
+        $model['user_id'] = $userId;
+        $model['article_id'] = $articleId;
         $model['status'] = $status;
-        $model['parentId'] = $parentId;
+        $model['parent_id'] = $parentId;
         return $model;
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

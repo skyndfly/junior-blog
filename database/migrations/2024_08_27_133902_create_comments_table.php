@@ -13,17 +13,22 @@ return new class extends Migration {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('comment');
-            $table->string('name');
-            $table->unsignedBigInteger('articleId');
-            $table->unsignedBigInteger('parentId')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('status');
 
-            $table->foreign('articleId')
+            $table->foreign('article_id')
                 ->references('id')
                 ->on('articles')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreign('parentId')
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreign('parent_id')
                 ->references('id')
                 ->on('comments')
                 ->cascadeOnDelete()
