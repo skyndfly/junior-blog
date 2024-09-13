@@ -7,6 +7,7 @@ interface Comment {
     id: number;
     name: string;
     comment: string;
+    created_at: string;
 }
 
 const App: React.FC = () => {
@@ -79,8 +80,10 @@ const App: React.FC = () => {
             // После успешного добавления комментария, получаем новые комментарии из базы данных
             setComments([]);
             setLoading(true);
-            await fetchComments(1); // Загрузить первый набор комментариев
             setComment(''); // Очищаем поле ввода
+            setHasMore(true);
+            setPage(1);
+            await fetchComments(1); // Загрузить первый набор комментариев
         }
     };
 

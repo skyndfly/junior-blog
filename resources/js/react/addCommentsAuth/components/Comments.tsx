@@ -4,6 +4,7 @@ interface Comment {
     id: number;
     name: string;
     comment: string;
+    created_at: string;
 }
 
 interface CommentsProps {
@@ -19,6 +20,7 @@ const Comments: React.FC<CommentsProps> = ({ comments, loading }) => {
                 {comments.map((comment) => (
                     <div key={comment.id} style={{ height: '100px', backgroundColor: "gray" }}>
                         {comment.id} - {comment.name}: {comment.comment}
+                        {comment.created_at}
                     </div>
                 ))}
             </div>

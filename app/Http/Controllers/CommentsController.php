@@ -57,21 +57,21 @@ class CommentsController extends Controller
     public function getAllPaginate(): JsonResponse
     {
         //TODO: переписать на кастомнмную пагинацию и DTO
-//        $perPage = 1; // Количество комментариев на страницу
-//
-//        $comments = Comments::with('user:id,name') // Загружаем только id и name пользователя
-//        ->orderBy('created_at', 'desc')
-//            ->paginate($perPage);
-//
-//        $comments->getCollection()->transform(function ($comment) {
-//            return [
-//                'id' => $comment->id,
-//                'name' => $comment->user->name, // Получаем имя пользователя
-//                'comment' => $comment->comment,
-//                'created_at' => $comment->created_at,
-//            ];
-//        });
-//
-//        return response()->json($comments);
+        $perPage = 5; // Количество комментариев на страницу
+
+        $comments = Comments::with('user:id,name') // Загружаем только id и name пользователя
+        ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
+
+        $comments->getCollection()->transform(function ($comment) {
+            return [
+                'id' => $comment->id,
+                'name' => $comment->user->name, // Получаем имя пользователя
+                'comment' => $comment->comment,
+                'created_at' => $comment->created_at,
+            ];
+        });
+
+        return response()->json($comments);
     }
 }
