@@ -24,9 +24,8 @@ class StoreService implements ArticleStoreContract
           $dto->description,
           $dto->shortDescription,
           $dto->mainImage,
-          $dto->status,
-          $dto->categoryId,
-          $dto->admin_id
+          Article::STATUS_PUBLISHED,
+          $dto->categoryId
       );
       $this->articleRepository->store($model);
     }

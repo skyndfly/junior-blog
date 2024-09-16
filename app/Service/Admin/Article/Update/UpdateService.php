@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Article\UpdateRequest as ArticleUpdateRequest;
 use App\Models\Article;
 use App\Repository\Admin\ArticleRepository;
 use App\Service\Admin\Article\Store\StoreDto as StoreDto;
+use App\Service\Admin\Article\Update\Dto as UpdateDto;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class UpdateService implements UpdateServiceContract
@@ -35,8 +36,7 @@ class UpdateService implements UpdateServiceContract
             $data->shortDescription,
             $data->mainImage,
             $data->status,
-            $data->categoryId,
-            $data->admin_id
+            $data->categoryId
         );
         $this->repository->store($model);
     }

@@ -2,7 +2,6 @@
 
 namespace App\Service\Admin\Article\Show;
 
-use App\Models\Admin;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Dto extends DataTransferObject
@@ -16,6 +15,5 @@ class Dto extends DataTransferObject
     public ?string $status = null;
     public string $category;
     public int $categoryId;
-    public ?Admin $admin;
 
 }

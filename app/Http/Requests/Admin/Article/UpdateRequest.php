@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin\Article;
 
-use App\Models\Article;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,16 +29,7 @@ class UpdateRequest extends FormRequest
             'shortDescription' => 'required|max:250',
             'mainImage' => 'nullable|image|mimes:jpg,jpeg,png',
             'categoryId' => 'required|integer|exists:categories,id',
-            'status' => 'required|string',
-            'admin_id' => 'required|integer|exists:admins,id',
+            'status' => 'required|string'
         ];
-    }
-
-    public function prepareForValidation()
-    {
-        $this->merge([
-            'admin_id' => auth()->guard('admin')->id(),
-            'status' => $this->get('status') ?? Article::STATUS_UNPUBLISHED,
-        ]);
     }
 }

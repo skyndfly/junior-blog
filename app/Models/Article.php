@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Service\Admin\Article\Store\StoreDto as StoreDto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,9 +32,9 @@ class Article extends Model
         string $shortDescription,
         string $mainImage,
         string $status,
-        int $categoryId,
-        int $admin_id,
-    ): Article {
+        int    $categoryId
+    ): Article
+    {
         $model = new Article();
         $model['title'] = $title;
         $model['slug'] = $slug;
@@ -42,7 +43,6 @@ class Article extends Model
         $model['mainImage'] = $mainImage;
         $model['status'] = $status;
         $model['categoryId'] = $categoryId;
-        $model['admin_id'] = $admin_id;
         return $model;
     }
 
@@ -54,9 +54,9 @@ class Article extends Model
         string $shortDescription,
         string $mainImage,
         string $status,
-        int $categoryId,
-        int $admin_id,
-    ): Article {
+        int    $categoryId
+    ): Article
+    {
         $model['title'] = $title;
         $model['slug'] = $slug;
         $model['description'] = $description;
@@ -64,17 +64,11 @@ class Article extends Model
         $model['mainImage'] = $mainImage;
         $model['status'] = $status;
         $model['categoryId'] = $categoryId;
-        $model['admin_id'] = $admin_id;
         return $model;
     }
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'categoryId');
-    }
-
-    public function admin(): BelongsTo
-    {
-        return $this->belongsTo(Admin::class, 'admin_id');
     }
 }
