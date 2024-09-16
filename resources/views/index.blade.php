@@ -24,7 +24,8 @@
                                 {{Carbon::parse($article->created_at)->format('d-m-Y H:i')}}
                             </div>
                         </div>
-                        <a href="" title="Открыть запись" class="text-3xl  hover:text-purple-800">
+                        <a href="{{route('article.show', $article->slug)}}" title="Открыть запись"
+                           class="text-3xl  hover:text-purple-800">
                             {{$article->title}}
                         </a>
                         <img class="py-2" src="{{ asset('storage/' . $article->mainImage) }}" alt="">
