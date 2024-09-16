@@ -12,6 +12,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use App\Service\Comment\StoreAuth\Dto as CommentsStoreAuthDto;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -54,13 +55,13 @@ class CommentsController extends Controller
             return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}."], 400);
         }
     }
-    public function getAllPaginate(): JsonResponse
+    public function getAllPaginate(int $id): JsonResponse
     {
-        //TODO: переписать на кастомнмную пагинацию и DTO
         $perPage = 5; // Количество комментариев на страницу
 
         $comments = Comments::with('user:id,name') // Загружаем только id и name пользователя
         ->orderBy('created_at', 'desc')
+            ->where(['article_id' => $id])
             ->paginate($perPage);
 
         $comments->getCollection()->transform(function ($comment) {
@@ -68,7 +69,7 @@ class CommentsController extends Controller
                 'id' => $comment->id,
                 'name' => $comment->user->name, // Получаем имя пользователя
                 'comment' => $comment->comment,
-                'created_at' => $comment->created_at,
+                'created_at' =>Carbon::parse($comment->created_at)->format('d-m-Y H:i') ,
             ];
         });
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import Form from "./components/Form";
 import Comments from "./components/Comments";
@@ -13,7 +13,7 @@ interface Comment {
 const App: React.FC = () => {
     const appElement = document.getElementById('app');
     const id = appElement?.getAttribute('data-id') || '';
-    const userId = appElement?.getAttribute('data-user-id') || '';
+    const userId = appElement?.getAttribute('data-user-id') || 'false';
     const [comment, setComment] = useState<string>('');
     const [errorStatus, setErrorStatus] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
@@ -28,12 +28,12 @@ const App: React.FC = () => {
     const fetchComments = async (page: number) => {
         setLoading(true);
         try {
-            const response = await fetch(`/comments/get-all-paginate?page=${page}`);
+            const response = await fetch(`/comments/get-all-paginate/${id}?page=${page}`);
             const data = await response.json();
             if (data.last_page === page) {
                 setHasMore(false);
             }
-                setComments((prev) => [...prev, ...data.data]);
+            setComments((prev) => [...prev, ...data.data]);
 
         } catch (error) {
             setResponseError('Ошибка загрузки комментариев.');
@@ -121,24 +121,45 @@ const App: React.FC = () => {
 
     return (
         <>
-            <Form
-                alertType={alertType}
-                errorStatus={errorStatus}
-                error={error}
-                responseError={responseError}
-                alertOpen={alertOpen}
-                handleSubmit={handleSubmit}
-                handleChangeComment={handleChangeComment}
-                setAlertOpen={setAlertOpen}
-            />
-            <Comments
-                comments={comments}
-                loading={loading}
-                hasMore={hasMore}
-            />
+            {userId === 'false' ? (
+                <div className="">
+
+                    <a
+                        href="/login"
+                        className="font-medium text-blue-600 hover:underline"
+                        style={{color: "#3b82f6"}}
+                    >
+                        Войдите
+                    </a> на сайте, чтобы
+                    иметь возможность оставлять комментарии
+                </div>
+            ) : (
+                <Form
+                    alertType={alertType}
+                    errorStatus={errorStatus}
+                    error={error}
+                    responseError={responseError}
+                    alertOpen={alertOpen}
+                    handleSubmit={handleSubmit}
+                    handleChangeComment={handleChangeComment}
+                    setAlertOpen={setAlertOpen}
+                />
+            )}
+            {
+                comments.length === 0 ? (
+                    <span>Будьте первым кто оставит комментарий</span>
+                ) : (
+                    <Comments
+                        comments={comments}
+                        loading={loading}
+                        hasMore={hasMore}
+                    />
+                )
+            }
+
         </>
     );
 };
 
 const root = ReactDOM.createRoot(document.getElementById('app') as HTMLElement);
-root.render(<App />);
+root.render(<App/>);
