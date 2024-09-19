@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Comments\CommentsStoreAuthServiceContract as CommentsStoreAuthService;
 use App\Http\Requests\Comments\CommentsAuthStoreRequest;
+use App\Http\Requests\Comments\CommentsGetAllByArticleRequest;
 use App\Http\Requests\Comments\CommentsGuestStoreRequest;
-use App\Models\Comments;
 use App\Service\Comment\StoreGuest\Dto as CommentStoreGuestDto;
 use DomainException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use App\Service\Comment\StoreAuth\Dto as CommentsStoreAuthDto;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 use App\Contracts\Comments\CommentsStoreGuestServiceContract as CommentsStoreGuestService;
+use App\Contracts\Comments\CommentsGetAllByArticleServiceContract as CommentsGetAllByArticleService;
+use App\Service\Comment\Dto\CommentsGetAllByArticleDto;
 
 class CommentsController extends Controller
 {
@@ -55,24 +56,13 @@ class CommentsController extends Controller
             return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}."], 400);
         }
     }
-    public function getAllPaginate(int $id): JsonResponse
+
+    /**
+     * @throws UnknownProperties
+     */
+    public function getByArticle(int $articleId, CommentsGetAllByArticleService $service): JsonResponse
     {
-        $perPage = 5; // Количество комментариев на страницу
 
-        $comments = Comments::with('user:id,name') // Загружаем только id и name пользователя
-        ->orderBy('created_at', 'desc')
-            ->where(['article_id' => $id])
-            ->paginate($perPage);
-
-        $comments->getCollection()->transform(function ($comment) {
-            return [
-                'id' => $comment->id,
-                'name' => $comment->user->name, // Получаем имя пользователя
-                'comment' => $comment->comment,
-                'created_at' =>Carbon::parse($comment->created_at)->format('d-m-Y H:i') ,
-            ];
-        });
-
-        return response()->json($comments);
+        return response()->json($service->execute($articleId));
     }
 }

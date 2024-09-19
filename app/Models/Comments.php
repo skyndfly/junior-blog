@@ -14,6 +14,8 @@ class Comments extends Model
     const STATUS_UNPUBLISHED = 'unpublished';
     const STATUS_DELETED = 'deleted';
 
+    const PER_PAGE = 10;
+
     public static function create(
         string $comment,
         int $userId,

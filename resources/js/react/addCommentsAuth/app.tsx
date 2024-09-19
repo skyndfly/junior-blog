@@ -28,7 +28,7 @@ const App: React.FC = () => {
     const fetchComments = async (page: number) => {
         setLoading(true);
         try {
-            const response = await fetch(`/comments/get-all-paginate/${id}?page=${page}`);
+            const response = await fetch(`/comments/get-by-article/${id}?page=${page}`);
             const data = await response.json();
             if (data.last_page === page) {
                 setHasMore(false);
@@ -130,7 +130,7 @@ const App: React.FC = () => {
                         style={{color: "#3b82f6"}}
                     >
                         Войдите
-                    </a> на сайте, чтобы
+                    </a> на сайт, чтобы
                     иметь возможность оставлять комментарии
                 </div>
             ) : (

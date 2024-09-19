@@ -18,7 +18,7 @@ Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('art
 //comments
 Route::post('/comments/add-comment-guest', [CommentsController::class, 'storeGuest'])->name('comments.store.guest');
 Route::post('/comments/add-comment-auth', [CommentsController::class, 'storeAuth'])->name('comments.store.auth');
-Route::get('/comments/get-all-paginate/{id}', [CommentsController::class, 'getAllPaginate'])->name('comments.get.all.paginate');
+Route::get('/comments/get-by-article/{id}', [CommentsController::class, 'getByArticle'])->name('comments.get.all.paginate');
 
 Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
