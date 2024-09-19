@@ -23,7 +23,30 @@
     @vite( 'resources/js/app.js')
 </head>
 <body class="bg-gray-200 font-sans">
+@if (session('success'))
+    <x-admin-alerts-success-alert>
+        {{session('success')}}
+    </x-admin-alerts-success-alert>
 
+@endif
+@if (session('error'))
+    <x-admin-alerts-danger-alert>
+        {{session('error')}}
+    </x-admin-alerts-danger-alert>
+
+@endif
+@if (session('info'))
+    <x-admin-alerts-info-alert>
+        {{session('info')}}
+    </x-admin-alerts-info-alert>
+
+@endif
+@if (session('warning'))
+    <x-admin-alerts-warning-alert>
+        {{session('warning')}}
+    </x-admin-alerts-warning-alert>
+
+@endif
 @include('layouts.header')
 <main class="">
     @yield('content')

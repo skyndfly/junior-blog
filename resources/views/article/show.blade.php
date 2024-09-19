@@ -8,11 +8,27 @@
 
 
 @section('content')
-    <div class="container mx-auto ">
-        <div class="border-2 border-gray-300 p-2 rounded-md bg-white mt-4">
-            <img class="block mx-auto" src="{{asset('storage/' . $article->mainImage)}}" alt="{{$article->title}}">
-            <h1 class="text-2xl text-gray-500 my-4 indent-2">{{$article->title}}</h1>
-            <div class="ck-content px-2">{!! $article->description !!}</div>
+    <div class="px-2 py-4 mt-4">
+        <div class="container mx-auto ">
+            <div class="bg-white rounded-md border-2 border-gray-300">
+                <div style="background-image: url({{asset('storage/' . $article->mainImage)}}); height: 50px;">
+
+                </div>
+                <h1 class="text-2xl text-gray-500 my-4 indent-2">{{$article->title}}</h1>
+                <div class="ck-content px-2">{!! $article->description !!}</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="px-2 py-4 bg-white">
+        <div class="container mx-auto ">
+            <h2 class="text-2xl font-bold mb-4">Похожие статьи</h2>
+        </div>
+    </div>
+    <div class="px-2 py-4">
+        <div class="container mx-auto ">
+            <h2 class="text-2xl font-bold mb-4" id="comments">Комментарии</h2>
+            @include('article.comment', ['id' => $article->id])
         </div>
     </div>
 
