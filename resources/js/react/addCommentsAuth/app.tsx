@@ -139,6 +139,7 @@ const App: React.FC = () => {
                     errorStatus={errorStatus}
                     error={error}
                     responseError={responseError}
+                    comment={comment}
                     alertOpen={alertOpen}
                     handleSubmit={handleSubmit}
                     handleChangeComment={handleChangeComment}

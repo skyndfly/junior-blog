@@ -6,13 +6,14 @@ interface FormProps {
     errorStatus: boolean;
     error: string;
     responseError: string;
+    comment: string;
     alertOpen: boolean;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     handleChangeComment: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     setAlertOpen: (open: boolean) => void;
 }
 
-const Form: React.FC<FormProps> = ({ alertType, errorStatus, error, responseError, alertOpen, handleSubmit, handleChangeComment, setAlertOpen }) => {
+const Form: React.FC<FormProps> = ({ alertType, errorStatus, error, responseError, comment, alertOpen, handleSubmit, handleChangeComment, setAlertOpen }) => {
     return (
         <form onSubmit={handleSubmit}>
             <p className="font-bold text-purple-950">Оставить комментарий</p>
@@ -24,6 +25,7 @@ const Form: React.FC<FormProps> = ({ alertType, errorStatus, error, responseErro
                             name="comment"
                             id="comment"
                             className="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            value={comment}
                         />
                     </div>
                 </div>
