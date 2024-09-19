@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Comments\CommentsGetAllByArticleServiceContract as CommentsGetAllByArticleService;
 use App\Contracts\Comments\CommentsStoreAuthServiceContract as CommentsStoreAuthService;
+use App\Contracts\Comments\CommentsStoreGuestServiceContract as CommentsStoreGuestService;
 use App\Http\Requests\Comments\CommentsAuthStoreRequest;
 use App\Http\Requests\Comments\CommentsGetAllByArticleRequest;
 use App\Http\Requests\Comments\CommentsGuestStoreRequest;
-use App\Service\Comment\StoreGuest\Dto as CommentStoreGuestDto;
+use App\Service\Comment\Dto\CommentsGetAllByArticleDto;
+use App\Service\Comment\Dto\CommentStoreAuthServiceDto as CommentsStoreAuthDto;
+use App\Service\Comment\Dto\CommentStoreGuestDto as CommentStoreGuestDto;
 use DomainException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use App\Service\Comment\StoreAuth\Dto as CommentsStoreAuthDto;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
-use App\Contracts\Comments\CommentsStoreGuestServiceContract as CommentsStoreGuestService;
-use App\Contracts\Comments\CommentsGetAllByArticleServiceContract as CommentsGetAllByArticleService;
-use App\Service\Comment\Dto\CommentsGetAllByArticleDto;
 
 class CommentsController extends Controller
 {

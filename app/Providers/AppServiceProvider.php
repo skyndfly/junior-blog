@@ -9,11 +9,15 @@ use App\Contracts\Admin\CategoryShowServiceContract;
 use App\Contracts\Comments\CommentsGetAllByArticleServiceContract;
 use App\Contracts\Comments\CommentsStoreAuthServiceContract;
 use App\Contracts\Comments\CommentsStoreGuestServiceContract;
+use App\Contracts\Index\ShowContract as IndexShowContract;
 use App\Service\Admin\Article\Store\StoreService as ArticleStoreService;
 use App\Service\Admin\Article\Update\UpdateService as ArticleUpdateService;
 use App\Service\Admin\Category\ShowForSelect\ShowService as CategoryShowService;
 use App\Service\Admin\Category\Store\StoreService as CategoryStoreService;
+use App\Service\Article\MainNews\Handler as MainNewsService;
 use App\Service\Comment\CommentsGetAllByArticleService;
+use App\Service\Comment\CommentStoreAuthService as CommentStoreAuthService;
+use App\Service\Comment\CommentStoreGuestService as CommentStoreGuestService;
 use App\View\Components\admin\alerts\DangerAlert;
 use App\View\Components\admin\alerts\InfoAlert;
 use App\View\Components\admin\alerts\SuccessAlert;
@@ -22,10 +26,6 @@ use App\View\Components\admin\form\CategorySelect;
 use App\View\Components\admin\messages\AccessDenied;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use App\Contracts\Index\ShowContract as IndexShowContract;
-use App\Service\Article\MainNews\Handler as MainNewsService;
-use App\Service\Comment\StoreGuest\Handler as CommentStoreGuestService;
-use App\Service\Comment\StoreAuth\Handler as CommentStoreAuthService;
 
 class AppServiceProvider extends ServiceProvider
 {

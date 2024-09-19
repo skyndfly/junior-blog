@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Service\Comment\StoreGuest;
+namespace App\Service\Comment;
 
+use App\Contracts\Comments\CommentsStoreGuestServiceContract;
 use App\Models\Comments;
 use App\Repository\Comments\Store\Query;
-use App\Contracts\Comments\CommentsStoreGuestServiceContract;
+use App\Service\Comment\Dto\CommentStoreGuestDto;
 
-final class Handler implements CommentsStoreGuestServiceContract
+final class CommentStoreGuestService implements CommentsStoreGuestServiceContract
 {
     private Query $query;
 
@@ -15,7 +16,7 @@ final class Handler implements CommentsStoreGuestServiceContract
         $this->query = $query;
     }
 
-    public function handle(Dto $dto): void
+    public function handle(CommentStoreGuestDto $dto): void
     {
         $model = Comments::create(
             $dto->comment,

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Service\Comment\StoreAuth;
+namespace App\Service\Comment;
 
 use App\Contracts\Comments\CommentsStoreAuthServiceContract;
 use App\Models\Comments;
 use App\Repository\Comments\Store\Query;
+use App\Service\Comment\Dto\CommentStoreAuthServiceDto;
 
-final class Handler implements CommentsStoreAuthServiceContract
+final class CommentStoreAuthService implements CommentsStoreAuthServiceContract
 {
     private Query $query;
 
@@ -15,7 +16,7 @@ final class Handler implements CommentsStoreAuthServiceContract
         $this->query = $query;
     }
 
-    public function handle(Dto $dto): void
+    public function handle(CommentStoreAuthServiceDto $dto): void
     {
         $model = Comments::create(
             $dto->comment,

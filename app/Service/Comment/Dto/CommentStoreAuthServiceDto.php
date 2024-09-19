@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Service\Comment\StoreAuth;
+namespace App\Service\Comment\Dto;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-final class Dto extends DataTransferObject
+final class CommentStoreAuthServiceDto extends DataTransferObject
 {
     public int $id;
     public int $userId;
