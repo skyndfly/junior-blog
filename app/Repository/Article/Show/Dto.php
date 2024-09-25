@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Admin\Article\Show;
+namespace App\Repository\Article\Show;
 
 use Spatie\DataTransferObject\DataTransferObject;
 

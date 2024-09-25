@@ -6,6 +6,8 @@ use App\Contracts\Admin\Article\ArticleStoreContract;
 use App\Contracts\Admin\Article\UpdateServiceContract;
 use App\Contracts\Admin\CategoryServiceContract;
 use App\Contracts\Admin\CategoryShowServiceContract;
+use App\Contracts\Articles\ArticleGetSimilarServiceContract;
+use App\Contracts\Articles\ArticleShowServiceContract;
 use App\Contracts\Comments\CommentsGetAllByArticleServiceContract;
 use App\Contracts\Comments\CommentsStoreAuthServiceContract;
 use App\Contracts\Comments\CommentsStoreGuestServiceContract;
@@ -14,6 +16,8 @@ use App\Service\Admin\Article\Store\StoreService as ArticleStoreService;
 use App\Service\Admin\Article\Update\UpdateService as ArticleUpdateService;
 use App\Service\Admin\Category\ShowForSelect\ShowService as CategoryShowService;
 use App\Service\Admin\Category\Store\StoreService as CategoryStoreService;
+use App\Service\Article\ArticleGetSimilarService;
+use App\Service\Article\ArticleShowService;
 use App\Service\Article\MainNews\Handler as MainNewsService;
 use App\Service\Comment\CommentsGetAllByArticleService;
 use App\Service\Comment\CommentStoreAuthService as CommentStoreAuthService;
@@ -42,6 +46,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CommentsStoreGuestServiceContract::class, CommentStoreGuestService::class);
         $this->app->bind(CommentsStoreAuthServiceContract::class, CommentStoreAuthService::class);
         $this->app->bind(CommentsGetAllByArticleServiceContract::class, CommentsGetAllByArticleService::class);
+        $this->app->bind(ArticleGetSimilarServiceContract::class, ArticleGetSimilarService::class);
+        $this->app->bind(ArticleShowServiceContract::class, ArticleShowService::class);
 
     }
 

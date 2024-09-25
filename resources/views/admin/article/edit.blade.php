@@ -1,9 +1,10 @@
 <?php
 
+use App\Repository\Article\Show\Dto as ArticleShowDto;
+use App\Service\Admin\Category\Show\Dto as CategoryShowDto;
 use App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto as CollectionDto;
-use App\Service\Admin\Article\Show\Dto as ArticleShowDto;
-use App\Service\Admin\Category\Show\Dto as CategoryShowDto
-    /** @var CollectionDto $categories */
+
+/** @var CollectionDto $categories */
 /** @var ArticleShowDto $article */
 /** @var CategoryShowDto $category */
 ?>
@@ -30,16 +31,16 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                 <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Название</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text"
-                            name="title"
-                            id="title"
-                            autocomplete="name"
-                            class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Новая запись..."
-                            value="{{old('title', $article->title)}}"
+                                type="text"
+                                name="title"
+                                id="title"
+                                autocomplete="name"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Новая запись..."
+                                value="{{old('title', $article->title)}}"
                         >
                     </div>
                     <p class="text-sm my-2 text-teal-700">
@@ -56,16 +57,16 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                 <label for="slug" class="block text-sm font-medium leading-6 text-gray-900">Ссылка</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text"
-                            name="slug"
-                            id="slug"
-                            autocomplete="name"
-                            class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Новая запись..."
-                            value="{{old('slug', $article->slug)}}"
+                                type="text"
+                                name="slug"
+                                id="slug"
+                                autocomplete="name"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Новая запись..."
+                                value="{{old('slug', $article->slug)}}"
                         >
                     </div>
                     <div class="text-red-500">
@@ -79,12 +80,12 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                 <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Описание</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                     <textarea
-                        class="block w-full min-h-[500px] border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        name="description"
-                        id="description"
+                            class="block w-full min-h-[500px] border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            name="description"
+                            id="description"
                     >
                         {!! old('description', $article->description) !!}
                     </textarea>
@@ -101,15 +102,15 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                     описание</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text"
-                            name="shortDescription"
-                            id="shortDescription"
-                            class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Новая запись..."
-                            value="{{old('shortDescription', $article->shortDescription)}}"
+                                type="text"
+                                name="shortDescription"
+                                id="shortDescription"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Новая запись..."
+                                value="{{old('shortDescription', $article->shortDescription)}}"
                         >
                     </div>
                     <p class="text-sm my-2 text-teal-700">
@@ -127,7 +128,7 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
                     изображение</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input type="file" name="mainImage" id="name" autocomplete="name"
                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -149,13 +150,13 @@ use App\Service\Admin\Category\Show\Dto as CategoryShowDto
             <label class="inline-flex items-center cursor-pointer">
                 <input type="checkbox" name="status" value="published" class="sr-only peer">
                 <div
-                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
+                        class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
                 <span class="ms-3 text-sm font-medium text-gray-900 ">Активна?</span>
             </label>
 
             <button
-                type="submit"
-                class="bg-teal-600 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded w-[200px]"
+                    type="submit"
+                    class="bg-teal-600 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded w-[200px]"
             >
                 Сохранитья
             </button>
