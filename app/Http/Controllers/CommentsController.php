@@ -6,9 +6,7 @@ use App\Contracts\Comments\CommentsGetAllByArticleServiceContract as CommentsGet
 use App\Contracts\Comments\CommentsStoreAuthServiceContract as CommentsStoreAuthService;
 use App\Contracts\Comments\CommentsStoreGuestServiceContract as CommentsStoreGuestService;
 use App\Http\Requests\Comments\CommentsAuthStoreRequest;
-use App\Http\Requests\Comments\CommentsGetAllByArticleRequest;
 use App\Http\Requests\Comments\CommentsGuestStoreRequest;
-use App\Service\Comment\Dto\CommentsGetAllByArticleDto;
 use App\Service\Comment\Dto\CommentStoreAuthServiceDto as CommentsStoreAuthDto;
 use App\Service\Comment\Dto\CommentStoreGuestDto as CommentStoreGuestDto;
 use DomainException;
@@ -48,7 +46,7 @@ class CommentsController extends Controller
             $service->handle($data);
 
             return response()->json(['message' => "Комментарий добавлен."], 200);
-        }catch (HttpResponseException|UnknownProperties $e){
+        } catch (HttpResponseException|UnknownProperties $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
             $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;

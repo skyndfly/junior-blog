@@ -6,10 +6,12 @@ class Collection
 {
     public array $items = [];
 
-    public function setItem(Dto $item): void{
+    public function setItem(Dto $item): void
+    {
         $this->items[] = $item;
     }
-    public function getItems(): array{
+    public function getItems(): array
+    {
         return $this->items;
     }
 }

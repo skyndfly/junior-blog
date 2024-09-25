@@ -8,7 +8,6 @@ use App\Http\Requests\Admin\Article\UpdateRequest as ArticleUpdateRequest;
 use App\Models\Article;
 use App\Repository\Admin\ArticleRepository;
 use App\Service\Admin\Article\Store\StoreDto as StoreDto;
-use App\Service\Admin\Article\Update\Dto as UpdateDto;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class UpdateService implements UpdateServiceContract

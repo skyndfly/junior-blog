@@ -11,14 +11,13 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class ArticleShowService implements ArticleShowServiceContract
 {
-
-    public function execute(CategoryShowDto $categoryShowDto , Article $article): ArticleShowDto
+    public function execute(CategoryShowDto $categoryShowDto, Article $article): ArticleShowDto
     {
         $categoryName = !empty($categoryShowDto->name) ? $categoryShowDto->name : '';
         try {
             return $this->createArticleShowDto($categoryName, $article->toArray());
         } catch (UnknownProperties $e) {
-            throw new DomainException('Не возможно показать статью. Сообщение:' . $e->getMessage() );
+            throw new DomainException('Не возможно показать статью. Сообщение:' . $e->getMessage());
         }
     }
 

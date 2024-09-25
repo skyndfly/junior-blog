@@ -18,7 +18,6 @@ use  App\Service\Article\Dto\ArticleGetSimilarDto;
 
 class ArticleController extends Controller
 {
-
     /**
      * @throws UnknownProperties
      */
@@ -29,19 +28,18 @@ class ArticleController extends Controller
 
             $article = $articleShowService->execute($category, $article);
 
-            if (empty($article->id)){
-               throw new UnknownProperties('Не возможно загрузить похожие статьи. Отсутствует ArticleId');
+            if (empty($article->id)) {
+                throw new UnknownProperties('Не возможно загрузить похожие статьи. Отсутствует ArticleId');
             }
             $similarArticles = $getSimilarService->execute(new ArticleGetSimilarDto($category->id, $article->id))->getItems();
 
-        }catch (UnknownProperties $e){
+        } catch (UnknownProperties $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
             $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
             Log::error($logMessage);
 
-        }
-        catch (DomainException $e){
+        } catch (DomainException $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
             $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;

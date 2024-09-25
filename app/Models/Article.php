@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Service\Admin\Article\Store\StoreDto as StoreDto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,8 +32,7 @@ class Article extends Model
         string $mainImage,
         string $status,
         int    $categoryId
-    ): Article
-    {
+    ): Article {
         $model = new Article();
         $model['title'] = $title;
         $model['slug'] = $slug;
@@ -55,8 +53,7 @@ class Article extends Model
         string $mainImage,
         string $status,
         int    $categoryId
-    ): Article
-    {
+    ): Article {
         $model['title'] = $title;
         $model['slug'] = $slug;
         $model['description'] = $description;

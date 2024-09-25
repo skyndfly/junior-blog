@@ -12,13 +12,13 @@ final class Query
      */
     public function execute(): ?Dto
     {
-       $data = Article::query()
-           ->where(['status' => Article::STATUS_PUBLISHED])
-           ->orderBy('created_at', 'desc')
-           ->first();
-       if ($data === null){
-           return null;
-       }
-       return new Dto($data->toArray());
+        $data = Article::query()
+            ->where(['status' => Article::STATUS_PUBLISHED])
+            ->orderBy('created_at', 'desc')
+            ->first();
+        if ($data === null) {
+            return null;
+        }
+        return new Dto($data->toArray());
     }
 }

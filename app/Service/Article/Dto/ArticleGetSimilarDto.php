@@ -2,7 +2,6 @@
 
 namespace App\Service\Article\Dto;
 
-
 class ArticleGetSimilarDto
 {
     public int $categoryId;

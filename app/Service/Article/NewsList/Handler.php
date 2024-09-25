@@ -7,7 +7,6 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class Handler
 {
-
     /**
      * @throws UnknownProperties
      */
