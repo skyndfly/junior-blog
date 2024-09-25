@@ -1,8 +1,10 @@
 @php
-    use App\Service\Admin\Article\Show\Dto as ArticleShowDto;
+    use App\Repository\Article\GetSimilar\Dto;
+    use App\Repository\Article\Show\Dto as ArticleShowDto;
     /** @var ArticleShowDto $article */
-
+    /** @var Dto[] $similarArticles */
 @endphp
+
 @extends('layouts.app')
 @section('title', $article->title)
 
@@ -20,11 +22,30 @@
         </div>
 
     </div>
-    <div class="px-2 py-4 bg-white">
-        <div class="container mx-auto ">
-            <h2 class="text-2xl font-bold mb-4">Похожие статьи</h2>
+
+    @if(!empty($similarArticles))
+        <div class="px-2 py-12 bg-white">
+            <div class="container mx-auto ">
+                <h2 class="text-2xl font-bold mb-4">Похожие статьи</h2>
+                <div class="flex gap-6 flex-wrap xl:flex-nowrap	">
+                    @foreach($similarArticles as $item)
+                        <div
+                            class="w-full xl:w-1/2 relative bg-white shadow-custom rounded-lg p-6 transform hover:scale-105 transition-transform duration-300"
+                        >
+                            <h4 class="text-xl font-bold mb-2">{{$item->title}}</h4>
+                            <p class="mb-4">{{$item->shortDescription}}</p>
+                            <a class="text-blue-500 absolute bottom-2 font-bold hover:underline " href="">Читать дальше...</a>
+                            <div
+                                style="background-image: url({{asset('storage/' . $item->mainImage)}})"
+                                class="h-[5px] w-full absolute bottom-0 left-0"
+                            ></div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
-    </div>
+    @endif
+
     <div class="px-2 py-4">
         <div class="container mx-auto ">
             <h2 class="text-2xl font-bold mb-4" id="comments">Комментарии</h2>

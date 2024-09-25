@@ -27,7 +27,8 @@ class CategoryRepository
         return collect($this->sortAndAddLevel($categories))->keyBy('id');
     }
 
-    function sortAndAddLevel(Collection $elements, $parentId = null, $level = 0) {
+    public function sortAndAddLevel(Collection $elements, $parentId = null, $level = 0)
+    {
         $result = collect();
 
         $children = $elements->where('parentId', $parentId);

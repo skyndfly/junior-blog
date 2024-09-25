@@ -10,10 +10,10 @@ class Category extends Model
 {
     use HasFactory;
 
-    const STATUS_ACTIVE = 'active';
-    const STATUS_INACTIVE = 'inactive';
-    const STATUS_DELETED = 'deleted';
-    const PAGINATE = 10;
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_DELETED = 'deleted';
+    public const PAGINATE = 10;
     protected $guarded = [];
     protected $table = 'categories';
 
@@ -21,8 +21,7 @@ class Category extends Model
     public static function create(
         string $name,
         ?int   $parentId,
-    ): Category
-    {
+    ): Category {
         $category = new Category();
         $category['name'] = $name;
         $category['parentId'] = $parentId;

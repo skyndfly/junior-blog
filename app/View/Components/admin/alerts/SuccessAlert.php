@@ -8,7 +8,6 @@ use Illuminate\View\Component;
 
 class SuccessAlert extends Component
 {
-
     public function __construct()
     {
     }

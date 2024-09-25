@@ -10,7 +10,7 @@ class IndexController extends Controller
     public function __invoke(IndexShowService $service): View
     {
         $article = $service->handle();
-        return view('index',[
+        return view('index', [
             'article' => $article
         ]);
     }

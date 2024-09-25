@@ -18,16 +18,16 @@ class StoreService implements ArticleStoreContract
     public function handle(StoreDto $dto): void
     {
 
-      $model = Article::create(
-          $dto->title,
-          $dto->slug,
-          $dto->description,
-          $dto->shortDescription,
-          $dto->mainImage,
-          Article::STATUS_PUBLISHED,
-          $dto->categoryId
-      );
-      $this->articleRepository->store($model);
+        $model = Article::create(
+            $dto->title,
+            $dto->slug,
+            $dto->description,
+            $dto->shortDescription,
+            $dto->mainImage,
+            Article::STATUS_PUBLISHED,
+            $dto->categoryId
+        );
+        $this->articleRepository->store($model);
     }
 
 }

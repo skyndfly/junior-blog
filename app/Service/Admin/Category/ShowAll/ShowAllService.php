@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Service\Admin\Category\ShowAll;
+
 use App\Repository\Admin\CategoryRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

@@ -10,11 +10,11 @@ class Comments extends Model
 {
     use HasFactory;
 
-    const STATUS_PUBLISHED = 'published';
-    const STATUS_UNPUBLISHED = 'unpublished';
-    const STATUS_DELETED = 'deleted';
+    public const STATUS_PUBLISHED = 'published';
+    public const STATUS_UNPUBLISHED = 'unpublished';
+    public const STATUS_DELETED = 'deleted';
 
-    const PER_PAGE = 10;
+    public const PER_PAGE = 10;
 
     public static function create(
         string $comment,
@@ -22,8 +22,7 @@ class Comments extends Model
         int $articleId,
         string $status,
         ?int $parentId = null
-    ): Comments
-    {
+    ): Comments {
         $model = new self();
         $model['comment'] = $comment;
         $model['user_id'] = $userId;

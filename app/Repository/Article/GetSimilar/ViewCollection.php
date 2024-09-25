@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service\Article\NewsList;
+namespace App\Repository\Article\GetSimilar;
 
-class Collection
+class ViewCollection
 {
     public array $items = [];
 
@@ -10,8 +10,10 @@ class Collection
     {
         $this->items[] = $item;
     }
+
     public function getItems(): array
     {
         return $this->items;
     }
+
 }
