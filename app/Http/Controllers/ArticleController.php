@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Articles\ArticleShowServiceContract;
 use App\Models\Article;
 use App\Service\Admin\Category\Show\Dto as CategoryShowDto;
-use App\Service\Article\ArticleShowService;
 use DomainException;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -21,7 +19,7 @@ class ArticleController extends Controller
     /**
      * @throws UnknownProperties
      */
-    public function show(Article $article, ArticleGetSimilarService $getSimilarService, ArticleShowService $articleShowService): Application|RedirectResponse|Redirector|View
+    public function show(Article $article, ArticleGetSimilarService $getSimilarService, ArticleShowServiceContract $articleShowService): RedirectResponse|View
     {
         try {
             $category = new CategoryShowDto($article->category->toArray());
@@ -44,7 +42,7 @@ class ArticleController extends Controller
             $message = "{$e->getMessage()}. Error code - {$uuid}";
             $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
             Log::error($logMessage);
-            return redirect(route('index'))->with('error', "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}");
+            return redirect('/')->with('error', "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}");
         }
         return view('article.show', [
             'article' => $article,

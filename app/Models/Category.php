@@ -28,6 +28,23 @@ class Category extends Model
         $category['status'] = self::STATUS_ACTIVE;
         return $category;
     }
+
+    public function getName(): string
+    {
+        return $this['name'];
+    }
+    public function getId(): int
+    {
+        return $this['id'];
+    }
+    public function getParentId(): string
+    {
+        return $this['parentId'];
+    }
+    public function getLevel(): string
+    {
+        return $this['level'];
+    }
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'parentId');
