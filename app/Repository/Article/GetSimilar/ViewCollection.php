@@ -6,7 +6,7 @@ class ViewCollection
 {
     public array $items = [];
 
-    public function setItem(Dto $item): void
+    public function setItem(GetSimilarDto $item): void
     {
         $this->items[] = $item;
     }

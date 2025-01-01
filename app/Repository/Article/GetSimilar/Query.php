@@ -18,7 +18,7 @@ class Query
              ->get();
         $articles = new ViewCollection();
         foreach ($result->toArray() as $article) {
-            $articles->setItem(new Dto($article));
+            $articles->setItem(new GetSimilarDto($article));
         }
         return $articles;
     }

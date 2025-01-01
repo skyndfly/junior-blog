@@ -4,7 +4,7 @@ namespace App\Repository\Article\GetSimilar;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class Dto extends DataTransferObject
+class GetSimilarDto extends DataTransferObject
 {
     public int $id;
     public string $title;
