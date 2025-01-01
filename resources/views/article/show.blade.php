@@ -1,8 +1,8 @@
 @php
-    use App\Repository\Article\GetSimilar\Dto;
+    use App\Repository\Article\GetSimilar\GetSimilarDto;
     use App\Repository\Article\Show\Dto as ArticleShowDto;
     /** @var ArticleShowDto $article */
-    /** @var Dto[] $similarArticles */
+    /** @var GetSimilarDto[] $similarArticles */
 @endphp
 
 @extends('layouts.app')
@@ -34,7 +34,8 @@
                         >
                             <h4 class="text-xl font-bold mb-2">{{$item->title}}</h4>
                             <p class="mb-4">{{$item->shortDescription}}</p>
-                            <a class="text-blue-500 absolute bottom-2 font-bold hover:underline " href="">Читать дальше...</a>
+                            <a class="text-blue-500 absolute bottom-2 font-bold hover:underline "
+                               href="{{$item->slug}}">Читать дальше...</a>
                             <div
                                 style="background-image: url({{asset('storage/' . $item->mainImage)}})"
                                 class="h-[5px] w-full absolute bottom-0 left-0"
