@@ -31,11 +31,12 @@ class CommentsController extends Controller
         } catch (DomainException|UnknownProperties $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
-            $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
+            $logMessage = 'Class: '.__METHOD__.' | Line: '.__LINE__.' | '.$message;
             $request->session()->flash('error', "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}");
             Log::error($logMessage);
         }
-        return redirect()->to(url()->previous() . "#comments");
+
+        return redirect()->to(url()->previous().'#comments');
     }
 
     public function storeAuth(CommentsAuthStoreRequest $request, CommentsStoreAuthService $service): JsonResponse
@@ -45,12 +46,13 @@ class CommentsController extends Controller
 
             $service->handle($data);
 
-            return response()->json(['message' => "Комментарий добавлен."], 200);
+            return response()->json(['message' => 'Комментарий добавлен.'], 200);
         } catch (HttpResponseException|UnknownProperties $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
-            $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
+            $logMessage = 'Class: '.__METHOD__.' | Line: '.__LINE__.' | '.$message;
             Log::error($logMessage);
+
             return response()->json(['message' => "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}."], 400);
         }
     }

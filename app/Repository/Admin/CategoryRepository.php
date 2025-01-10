@@ -2,6 +2,7 @@
 
 namespace App\Repository\Admin;
 
+use App\Enums\CategoryStatusEnum;
 use App\Models\Category;
 use DomainException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -12,7 +13,7 @@ class CategoryRepository
 {
     public function store(Category $model): void
     {
-        if (!$model->save()) {
+        if (! $model->save()) {
             throw new DomainException('Ошибка сохранения.');
         }
     }
@@ -21,7 +22,7 @@ class CategoryRepository
     {
         $categories = DB::table('categories')
             ->select('id', 'name', 'parentId')
-            ->where(['status' => Category::STATUS_ACTIVE])
+            ->where(['status' => CategoryStatusEnum::STATUS_ACTIVE])
             ->get();
 
         return collect($this->sortAndAddLevel($categories))->keyBy('id');
@@ -46,5 +47,4 @@ class CategoryRepository
     {
         return Category::query()->paginate(Category::PAGINATE);
     }
-
 }

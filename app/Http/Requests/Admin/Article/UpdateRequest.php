@@ -29,7 +29,7 @@ class UpdateRequest extends FormRequest
             'shortDescription' => 'required|max:250',
             'mainImage' => 'nullable|image|mimes:jpg,jpeg,png',
             'categoryId' => 'required|integer|exists:categories,id',
-            'status' => 'required|string'
+            'status' => 'required|string',
         ];
     }
 }

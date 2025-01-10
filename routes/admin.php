@@ -21,6 +21,7 @@ Route::prefix('lk')->middleware('auth:admin')->group(function () {
     Route::get('/create-category', [CategoryController::class, 'create'])->name('admin.category.create');
     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.category.index');
     Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
+    Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('admin.category.edit');
     Route::post('/create-category', [CategoryController::class, 'store'])->name('admin.category.store');
 
     //article

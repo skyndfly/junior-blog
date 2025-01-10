@@ -9,5 +9,6 @@ use App\Repository\Admin\ArticleRepository;
 interface UpdateServiceContract
 {
     public function __construct(ArticleRepository $repository);
+
     public function handle(Article $article, ArticleUpdateRequest $request);
 }

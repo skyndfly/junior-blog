@@ -10,5 +10,4 @@ class DateFormaterHelper
     {
         return Carbon::parse($timestamp)->format('d-m-Y H:i');
     }
-
 }

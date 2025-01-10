@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Service\Admin\Category\ShowForSelect;
+namespace App\Service\Admin\Category\ShowAllForSelect;
 
-use App\Contracts\Admin\CategoryShowServiceContract;
+use App\Contracts\Admin\ShowAllForSelectServiceContract;
 use App\Repository\Admin\CategoryRepository;
-use App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto;
-use App\Service\Admin\Category\ShowForSelect\Dto\Dto;
+use App\Service\Admin\Category\ShowAllForSelect\Dto\CollectionDto;
+use App\Service\Admin\Category\ShowAllForSelect\Dto\ShowAllForSelectDto;
 
-class ShowService implements CategoryShowServiceContract
+class ShowAllForSelectService implements ShowAllForSelectServiceContract
 {
     private CategoryRepository $repository;
 
@@ -20,16 +20,16 @@ class ShowService implements CategoryShowServiceContract
     {
         $categories = $this->repository->getActiveAsCollection();
 
-        $collection = new CollectionDto();
+        $collection = new CollectionDto;
         foreach ($categories as $category) {
-            $collection->setItem(new Dto(
+            $collection->setItem(new ShowAllForSelectDto(
                 $category->id,
                 $category->name,
                 $category->parentId,
                 $category->level
             ));
         }
+
         return $collection;
     }
-
 }

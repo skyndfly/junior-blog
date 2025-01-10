@@ -4,7 +4,7 @@ namespace App\Contracts\Articles;
 
 use App\Models\Article;
 use App\Repository\Article\Show\Dto as ArticleShowDto;
-use App\Service\Admin\Category\Show\Dto as CategoryShowDto;
+use App\Service\Admin\Category\Show\CategoryShowDto;
 
 interface ArticleShowServiceContract
 {

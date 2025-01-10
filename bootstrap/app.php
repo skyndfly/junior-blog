@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             if ($request->is('lk*')) {
                 return route('admin.login');
             }
+
             return route('login');
         });
     })

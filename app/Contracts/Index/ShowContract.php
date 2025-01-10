@@ -2,8 +2,8 @@
 
 namespace App\Contracts\Index;
 
-use App\Repository\Article\ShowMainArticle\Query as ShowMainArticleQuery;
 use App\Repository\Article\ShowMainArticle\Dto as ShowMainArticleDto;
+use App\Repository\Article\ShowMainArticle\Query as ShowMainArticleQuery;
 
 interface ShowContract
 {

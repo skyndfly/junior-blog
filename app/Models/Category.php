@@ -2,35 +2,43 @@
 
 namespace App\Models;
 
+use App\Enums\CategoryStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class Category
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $title
+ * @property string $description
+ */
 class Category extends Model
 {
     use HasFactory;
 
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_INACTIVE = 'inactive';
-    public const STATUS_DELETED = 'deleted';
     public const PAGINATE = 10;
-    protected $guarded = [];
-    protected $table = 'categories';
 
+    protected $guarded = [];
+
+    protected $table = 'categories';
 
     public static function create(
         string $name,
-        ?int   $parentId,
+        ?int $parentId,
     ): Category {
-        $category = new Category();
+        $category = new Category;
         $category['name'] = $name;
         $category['parentId'] = $parentId;
-        $category['status'] = self::STATUS_ACTIVE;
+        $category['status'] = CategoryStatusEnum::STATUS_ACTIVE->value;
+
         return $category;
     }
+
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'parentId');
     }
-
 }

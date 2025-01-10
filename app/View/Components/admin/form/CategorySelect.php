@@ -9,9 +9,10 @@ use Illuminate\View\Component;
 class CategorySelect extends Component
 {
     public array $categories;
-    public string $name;
-    public ?int $selected = null;
 
+    public string $name;
+
+    public ?int $selected = null;
 
     public function __construct(array $categories, string $name, ?int $selected = null)
     {
@@ -19,7 +20,6 @@ class CategorySelect extends Component
         $this->name = $name;
         $this->selected = $selected;
     }
-
 
     /**
      * Get the view / contents that represent the component.

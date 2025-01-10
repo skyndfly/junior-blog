@@ -16,7 +16,6 @@ class StoreService implements CategoryServiceContract
         $this->repository = $repository;
     }
 
-
     public function handle(CategoryStoreDto $dto): void
     {
         $model = Category::create(

@@ -15,7 +15,6 @@ class Handler
         $this->getAllQuery = $getAllQuery;
     }
 
-
     /**
      * @throws UnknownProperties
      */

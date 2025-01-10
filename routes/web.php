@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('index');
 
-Route::get('/category', function () {return view('category');})->name('category');
+Route::get('/category', function () {
+    return view('category');
+})->name('category');
 
-Route::get('/dashboard', function () { return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 //article
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('article.show');

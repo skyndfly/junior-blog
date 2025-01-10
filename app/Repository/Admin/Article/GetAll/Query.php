@@ -14,11 +14,11 @@ final class Query
     {
         $data = Article::query()->paginate(Article::ADMIN_PAGINATION);
 
-        $articles = new Collection();
-        foreach($data as $article) {
-            $articles->setItems(new Dto(array_merge($article->toArray(), ['category' =>  $article->category->name])));
+        $articles = new Collection;
+        foreach ($data as $article) {
+            $articles->setItems(new Dto(array_merge($article->toArray(), ['category' => $article->category->name])));
         }
+
         return $articles;
     }
-
 }

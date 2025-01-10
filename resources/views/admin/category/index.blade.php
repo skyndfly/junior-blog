@@ -1,4 +1,4 @@
-@php use App\Models\Category; @endphp
+@php use App\Enums\CategoryStatusEnum; @endphp
 
 @extends('admin.layouts.app')
 
@@ -49,10 +49,12 @@
                         @endif
                     </td>
                     <td class="px-6 py-4">
-                        @if($item->status === Category::STATUS_ACTIVE)
-                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Активна</span>
-                        @elseif($item->status === Category::STATUS_INACTIVE)
-                            <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">Отключена</span>
+                        @if($item->status === CategoryStatusEnum::STATUS_ACTIVE->value)
+                            <span
+                                class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Активна</span>
+                        @elseif($item->status === CategoryStatusEnum::STATUS_INACTIVE->value)
+                            <span
+                                class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">Отключена</span>
                         @endif
                     </td>
                     <td class="px-6 py-4">
@@ -60,10 +62,11 @@
                                 class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                             Просмотр
                         </button>
-                        <button type="button"
-                                class="text-yellow-600 hover:text-white border border-yellow-600 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                        <a
+                            href="{{route('admin.category.edit', $item->id)}}"
+                            class="text-yellow-600 hover:text-white border border-yellow-600 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
                             Редактировать
-                        </button>
+                        </a>
                         <button type="button"
                                 class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                             Удалить

@@ -29,5 +29,4 @@ class StoreService implements ArticleStoreContract
         );
         $this->articleRepository->store($model);
     }
-
 }

@@ -10,10 +10,12 @@ use Illuminate\Pagination\LengthAwarePaginator;
 final class CommentsGetAllByArticleService implements CommentsGetAllByArticleServiceContract
 {
     private GetAllByArticleRepository $getAllByArticleRepository;
+
     public function __construct(GetAllByArticleRepository $query)
     {
         $this->getAllByArticleRepository = $query;
     }
+
     public function execute(int $articleId): LengthAwarePaginator
     {
 
@@ -27,8 +29,7 @@ final class CommentsGetAllByArticleService implements CommentsGetAllByArticleSer
                 'created_at' => DateFormaterHelper::formatToDateTime($comment->created_at),
             ];
         });
+
         return $comments;
     }
-
-
 }

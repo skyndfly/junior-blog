@@ -8,5 +8,6 @@ use App\Service\Admin\Category\Store\Dto\StoreDto as CategoryStoreDto;
 interface CategoryServiceContract
 {
     public function __construct(CategoryRepository $repository);
+
     public function handle(CategoryStoreDto $data): void;
 }

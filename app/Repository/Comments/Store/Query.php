@@ -8,9 +8,8 @@ final class Query
 {
     public function fetch(Comments $model): void
     {
-        if (!$model->save()) {
+        if (! $model->save()) {
             throw new \DomainException('Ошибка сохранения.');
         }
     }
-
 }

@@ -7,5 +7,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 class StoreDto extends DataTransferObject
 {
     public string $name;
+
     public ?int $parentId = null;
 }
