@@ -23,6 +23,7 @@ Route::prefix('lk')->middleware('auth:admin')->group(function () {
     Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
     Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('admin.category.edit');
     Route::post('/create-category', [CategoryController::class, 'store'])->name('admin.category.store');
+    Route::post('/update-category', [CategoryController::class, 'update'])->name('admin.category.update');
 
     //article
     Route::get('/articles', [ArticleController::class, 'index'])->name('admin.article.index');

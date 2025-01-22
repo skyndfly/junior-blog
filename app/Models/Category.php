@@ -37,6 +37,24 @@ class Category extends Model
         return $category;
     }
 
+    public function setName(string $name): void
+    {
+        $this->attributes['name'] = $name;
+    }
+
+    public function setParentId(?int $parentId): void
+    {
+        $this->attributes['parentId'] = $parentId;
+    }
+
+    public function updateCategory(string $name, ?int $parentId): self
+    {
+        $this->setName($name);
+        $this->setParentId($parentId);
+
+        return $this;
+    }
+
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'parentId');

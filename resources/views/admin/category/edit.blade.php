@@ -1,5 +1,7 @@
 <?php
+
 use App\Enums\CategoryStatusEnum;
+
 /** @var \App\Service\Admin\Category\ShowAllForSelect\Dto\CollectionDto $allCategories */
 /** @var \App\Service\Admin\Category\Show\CategoryShowDto $category */
 
@@ -9,8 +11,9 @@ use App\Enums\CategoryStatusEnum;
 
 @section('content')
     <h1 class="text-2xl text-gray-500 mb-4">Редактировать категорию</h1>
-    <form action="{{route('admin.category.store')}}" method="post" class="bg-white p-4 flex flex-col gap-4 rounded-md">
+    <form action="{{route('admin.category.update')}}" method="post" class="bg-white p-4 flex flex-col gap-4 rounded-md">
         @csrf
+        <input name="id" type="hidden" value="{{$category->id}}">
         <div class=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div class="sm:col-span-4">
                 <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Название
@@ -23,10 +26,17 @@ use App\Enums\CategoryStatusEnum;
                                placeholder="Linux" value="{{$category->name}}">
                     </div>
                 </div>
+                @error('name')
+                {{$message}}
+                @enderror
             </div>
         </div>
-        <x-admin-form-category-select :categories="$allCategories->getItems()" :selected="$category->parentId" name="parentId">
+        <x-admin-form-category-select :categories="$allCategories->getItems()" :selected="$category->parentId"
+                                      name="parentId">
         </x-admin-form-category-select>
+        @error('parentId')
+        {{$message}}
+        @enderror
         <label class="inline-flex items-center cursor-pointer">
             <input {{$category->status === CategoryStatusEnum::STATUS_ACTIVE->value ? 'checked' : ' '}} type="checkbox" name="status" value="" class="sr-only peer">
             <div

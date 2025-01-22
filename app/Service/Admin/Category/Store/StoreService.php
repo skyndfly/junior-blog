@@ -2,12 +2,12 @@
 
 namespace App\Service\Admin\Category\Store;
 
-use App\Contracts\Admin\CategoryServiceContract;
+use App\Contracts\Admin\Category\CategoryStoreServiceContract;
 use App\Models\Category;
 use App\Repository\Admin\CategoryRepository;
 use App\Service\Admin\Category\Store\Dto\StoreDto as CategoryStoreDto;
 
-class StoreService implements CategoryServiceContract
+class StoreService implements CategoryStoreServiceContract
 {
     private CategoryRepository $repository;
 
