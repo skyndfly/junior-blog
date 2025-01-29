@@ -1,4 +1,4 @@
-<div class="container mx-auto ">
+<div class="container mx-auto xl:px-0 lg:px-3">
 <header class="">
         <div class="bg-purple-950 rounded-t-lg py-14 mt-14">
             <h1 class="text-center text-white text-6xl mb-2">
