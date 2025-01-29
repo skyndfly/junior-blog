@@ -3,12 +3,12 @@
         <span class="font-bold">
             Главная
         </span>
-        <span class="font-bold">
-            /
-        </span>
-        <a href="">
-            Название статьи
-        </a>
+{{--        <span class="font-bold">--}}
+{{--            /--}}
+{{--        </span>--}}
+{{--        <a href="">--}}
+{{--            Название статьи--}}
+{{--        </a>--}}
     </div>
     <div>
         @if (Route::has('login'))
