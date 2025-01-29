@@ -1,5 +1,5 @@
 @php
-    use App\Service\Admin\Category\ShowForSelect\Dto\CollectionDto;use function Laravel\Prompts\error;
+    use App\Service\Admin\Category\ShowAllForSelect\Dto\CollectionDto;use function Laravel\Prompts\error;
     /** @var CollectionDto $categories */
 @endphp
 
@@ -24,7 +24,7 @@
                 <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Название</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input type="text"
                                name="title"
@@ -50,15 +50,15 @@
                 <label for="slug" class="block text-sm font-medium leading-6 text-gray-900">Ссылка</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text"
-                            name="slug"
-                            id="slug"
-                            value="{{old('slug')}}"
-                            class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Новая запись..."
+                                type="text"
+                                name="slug"
+                                id="slug"
+                                value="{{old('slug')}}"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Новая запись..."
                         >
                     </div>
                     <div class="text-red-500">
@@ -72,11 +72,11 @@
                 <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Описание</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                     <textarea
-                        class="block w-full min-h-[500px] border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        name="description" id="description"
+                            class="block w-full min-h-[500px] border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            name="description" id="description"
                     >
                         {{old('description')}}
                     </textarea>
@@ -93,15 +93,15 @@
                     описание</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input
-                            type="text"
-                            name="shortDescription"
-                            id="shortDescription"
-                            value="{{old('shortDescription')}}"
-                            class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Новая запись..."
+                                type="text"
+                                name="shortDescription"
+                                id="shortDescription"
+                                value="{{old('shortDescription')}}"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Новая запись..."
                         >
                     </div>
                     <p class="text-sm my-2 text-teal-700">
@@ -119,7 +119,7 @@
                     изображение</label>
                 <div class="mt-2">
                     <div
-                        class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+                            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
                     >
                         <input type="file" name="mainImage" id="name" autocomplete="name"
                                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -137,7 +137,7 @@
             <label class="inline-flex items-center cursor-pointer">
                 <input type="checkbox" name="status" value="" class="sr-only peer">
                 <div
-                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
+                        class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
                 <span class="ms-3 text-sm font-medium text-gray-900 ">Активна?</span>
             </label>
 

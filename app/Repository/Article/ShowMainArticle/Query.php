@@ -19,6 +19,7 @@ final class Query
         if ($data === null) {
             return null;
         }
+
         return new Dto($data->toArray());
     }
 }

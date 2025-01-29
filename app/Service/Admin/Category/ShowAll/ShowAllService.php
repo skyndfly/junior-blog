@@ -9,7 +9,6 @@ class ShowAllService
 {
     private CategoryRepository $repository;
 
-
     public function __construct(CategoryRepository $repository)
     {
         $this->repository = $repository;

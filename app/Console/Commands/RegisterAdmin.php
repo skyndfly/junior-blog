@@ -38,8 +38,8 @@ class RegisterAdmin extends Command
         ]);
         $this->info('Admin registered successfully!');
         $this->warn('Admin details:');
-        $this->info('Name: ' . $admin->name);
-        $this->info('Email: ' . $admin->email);
-        $this->info('Password: ' . $admin->password);
+        $this->info('Name: '.$admin->name);
+        $this->info('Email: '.$admin->email);
+        $this->info('Password: '.$admin->password);
     }
 }

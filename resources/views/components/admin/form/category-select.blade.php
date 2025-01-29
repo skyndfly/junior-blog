@@ -1,19 +1,19 @@
 @php
-   use App\Service\Admin\Category\ShowForSelect\Dto\Dto;
-    /** @var Dto[] $categories */
-    /** @var string $name */
-    /** @var int $selected */
+    use App\Service\Admin\Category\ShowAllForSelect\Dto\ShowAllForSelectDto;
+     /** @var ShowAllForSelectDto[] $categories */
+     /** @var string $name */
+     /** @var int $selected */
 @endphp
 <div class="w-full">
-    <label for="{{$name}}" class="block text-sm font-medium leading-6 text-gray-900">Категория</label>
+    <label for="{{$name}}" class="block text-sm font-medium leading-6 text-gray-900">Родительская категория</label>
     <div class="mt-2">
         <div
-                class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
+            class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 "
         >
             <select
-                    name="{{$name}}"
-                    id="{{$name}}"
-                    class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                name="{{$name}}"
+                id="{{$name}}"
+                class="block w-full border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
             >
                 <option value="">Нет</option>
                 @if(!empty($categories))

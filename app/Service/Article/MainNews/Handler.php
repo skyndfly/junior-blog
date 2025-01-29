@@ -10,6 +10,7 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 class Handler implements ShowContract
 {
     private ShowMainArticleQuery $query;
+
     public function __construct(ShowMainArticleQuery $query)
     {
         $this->query = $query;

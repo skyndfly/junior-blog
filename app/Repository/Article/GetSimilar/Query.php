@@ -12,14 +12,15 @@ class Query
      */
     public function execute(int $categoryId, int $articleId): ViewCollection
     {
-        $result =  Article::where('categoryId', $categoryId)
-             ->where('id', '!=', $articleId)
-             ->take(4)
-             ->get();
-        $articles = new ViewCollection();
+        $result = Article::where('categoryId', $categoryId)
+            ->where('id', '!=', $articleId)
+            ->take(4)
+            ->get();
+        $articles = new ViewCollection;
         foreach ($result->toArray() as $article) {
             $articles->setItem(new GetSimilarDto($article));
         }
+
         return $articles;
     }
 }

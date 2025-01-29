@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Service\Admin\Category\ShowForSelect\Dto;
+namespace App\Service\Admin\Category\ShowAllForSelect\Dto;
 
 class CollectionDto
 {
     public array $items = [];
 
-    public function setItem(Dto $dto): void
+    public function setItem(ShowAllForSelectDto $dto): void
     {
         $this->items[] = $dto;
     }

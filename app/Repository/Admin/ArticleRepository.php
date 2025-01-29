@@ -8,9 +8,8 @@ class ArticleRepository
 {
     public function store(Article $model): void
     {
-        if (!$model->save()) {
+        if (! $model->save()) {
             throw new \DomainException('Ошибка сохранения.');
         }
     }
-
 }

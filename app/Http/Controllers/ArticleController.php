@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Articles\ArticleGetSimilarServiceContract as ArticleGetSimilarService;
 use App\Models\Article;
-use App\Service\Admin\Category\Show\Dto as CategoryShowDto;
+use App\Service\Admin\Category\Show\CategoryShowDto;
 use App\Service\Article\ArticleShowService;
+use App\Service\Article\Dto\ArticleGetSimilarDto;
 use DomainException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -13,8 +15,6 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
-use App\Contracts\Articles\ArticleGetSimilarServiceContract as ArticleGetSimilarService;
-use  App\Service\Article\Dto\ArticleGetSimilarDto;
 
 class ArticleController extends Controller
 {
@@ -36,16 +36,18 @@ class ArticleController extends Controller
         } catch (UnknownProperties $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
-            $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
+            $logMessage = 'Class: '.__METHOD__.' | Line: '.__LINE__.' | '.$message;
             Log::error($logMessage);
 
         } catch (DomainException $e) {
             $uuid = Uuid::uuid4();
             $message = "{$e->getMessage()}. Error code - {$uuid}";
-            $logMessage = "Class: " . __METHOD__ . " | Line: " . __LINE__ . " | " . $message;
+            $logMessage = 'Class: '.__METHOD__.' | Line: '.__LINE__.' | '.$message;
             Log::error($logMessage);
+
             return redirect(route('index'))->with('error', "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}");
         }
+
         return view('article.show', [
             'article' => $article,
             'similarArticles' => $similarArticles,

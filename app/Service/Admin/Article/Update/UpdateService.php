@@ -25,7 +25,7 @@ class UpdateService implements UpdateServiceContract
     public function handle(Article $article, ArticleUpdateRequest $request): void
     {
         $data = new StoreDto(array_merge($request->validated(), [
-            'mainImage' => UploadImageHelper::updateImage($request, 'articles', 'mainImage', $article->mainImage)
+            'mainImage' => UploadImageHelper::updateImage($request, 'articles', 'mainImage', $article->mainImage),
         ]));
         $model = Article::updateModel(
             $article,

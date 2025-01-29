@@ -11,7 +11,9 @@ class Comments extends Model
     use HasFactory;
 
     public const STATUS_PUBLISHED = 'published';
+
     public const STATUS_UNPUBLISHED = 'unpublished';
+
     public const STATUS_DELETED = 'deleted';
 
     public const PER_PAGE = 10;
@@ -23,12 +25,13 @@ class Comments extends Model
         string $status,
         ?int $parentId = null
     ): Comments {
-        $model = new self();
+        $model = new self;
         $model['comment'] = $comment;
         $model['user_id'] = $userId;
         $model['article_id'] = $articleId;
         $model['status'] = $status;
         $model['parent_id'] = $parentId;
+
         return $model;
     }
 

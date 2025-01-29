@@ -15,5 +15,4 @@ class ViewCollection
     {
         return $this->items;
     }
-
 }

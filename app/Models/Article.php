@@ -11,12 +11,17 @@ class Article extends Model
     use HasFactory;
 
     public const STATUS_PUBLISHED = 'published';
+
     public const STATUS_DRAFT = 'draft';
+
     public const STATUS_UNPUBLISHED = 'unpublished';
+
     public const STATUS_DELETED = 'deleted';
+
     public const ADMIN_PAGINATION = 30;
 
     protected $guarded = [];
+
     protected $table = 'articles';
 
     public function getRouteKeyName(): string
@@ -31,9 +36,9 @@ class Article extends Model
         string $shortDescription,
         string $mainImage,
         string $status,
-        int    $categoryId
+        int $categoryId
     ): Article {
-        $model = new Article();
+        $model = new Article;
         $model['title'] = $title;
         $model['slug'] = $slug;
         $model['description'] = $description;
@@ -41,6 +46,7 @@ class Article extends Model
         $model['mainImage'] = $mainImage;
         $model['status'] = $status;
         $model['categoryId'] = $categoryId;
+
         return $model;
     }
 
@@ -52,7 +58,7 @@ class Article extends Model
         string $shortDescription,
         string $mainImage,
         string $status,
-        int    $categoryId
+        int $categoryId
     ): Article {
         $model['title'] = $title;
         $model['slug'] = $slug;
@@ -61,6 +67,7 @@ class Article extends Model
         $model['mainImage'] = $mainImage;
         $model['status'] = $status;
         $model['categoryId'] = $categoryId;
+
         return $model;
     }
 

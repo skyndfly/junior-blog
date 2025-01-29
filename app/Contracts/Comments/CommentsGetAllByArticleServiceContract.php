@@ -2,8 +2,8 @@
 
 namespace App\Contracts\Comments;
 
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repository\Comments\GetAllByArticle\Query as GetAllByArticleRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface CommentsGetAllByArticleServiceContract
 {

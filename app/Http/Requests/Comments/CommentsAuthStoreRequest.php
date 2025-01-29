@@ -32,10 +32,11 @@ class CommentsAuthStoreRequest extends FormRequest
             'userId' => 'required',
         ];
     }
+
     protected function failedValidation(Validator $validator)
     {
         $uuid = Uuid::uuid4();
-        $message = "Validation failed: " . implode(", ", $validator->errors()->all()) . ". Error code - {$uuid}";
+        $message = 'Validation failed: '.implode(', ', $validator->errors()->all()).". Error code - {$uuid}";
 
         Log::error($message);
 

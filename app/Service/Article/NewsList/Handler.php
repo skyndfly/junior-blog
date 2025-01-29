@@ -20,10 +20,11 @@ class Handler
             ->limit(30)
             ->get();
 
-        $items = new Collection();
+        $items = new Collection;
         foreach ($articles as $article) {
             $items->setItem(new Dto($article->attributesToArray()));
         }
+
         return $items;
     }
 }

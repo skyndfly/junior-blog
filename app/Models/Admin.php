@@ -10,6 +10,7 @@ class Admin extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
+
     protected $guarded = 'admin';
 
     /**

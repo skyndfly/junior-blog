@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use App\Contracts\Admin\Article\ArticleStoreContract;
 use App\Contracts\Admin\Article\UpdateServiceContract;
-use App\Contracts\Admin\CategoryServiceContract;
-use App\Contracts\Admin\CategoryShowServiceContract;
+use App\Contracts\Admin\Category\CategoryEditServiceContract;
+use App\Contracts\Admin\Category\CategoryStoreServiceContract;
+use App\Contracts\Admin\ShowAllForSelectServiceContract;
 use App\Contracts\Articles\ArticleGetSimilarServiceContract;
 use App\Contracts\Articles\ArticleShowServiceContract;
 use App\Contracts\Comments\CommentsGetAllByArticleServiceContract;
@@ -14,7 +15,8 @@ use App\Contracts\Comments\CommentsStoreGuestServiceContract;
 use App\Contracts\Index\ShowContract as IndexShowContract;
 use App\Service\Admin\Article\Store\StoreService as ArticleStoreService;
 use App\Service\Admin\Article\Update\UpdateService as ArticleUpdateService;
-use App\Service\Admin\Category\ShowForSelect\ShowService as CategoryShowService;
+use App\Service\Admin\Category\Edit\CategoryEditService;
+use App\Service\Admin\Category\ShowAllForSelect\ShowAllForSelectService as CategoryShowService;
 use App\Service\Admin\Category\Store\StoreService as CategoryStoreService;
 use App\Service\Article\ArticleGetSimilarService;
 use App\Service\Article\ArticleShowService;
@@ -38,8 +40,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(CategoryServiceContract::class, CategoryStoreService::class);
-        $this->app->bind(CategoryShowServiceContract::class, CategoryShowService::class);
+        $this->app->bind(CategoryStoreServiceContract::class, CategoryStoreService::class);
+        $this->app->bind(CategoryEditServiceContract::class, CategoryEditService::class);
+        $this->app->bind(ShowAllForSelectServiceContract::class, CategoryShowService::class);
         $this->app->bind(ArticleStoreContract::class, ArticleStoreService::class);
         $this->app->bind(IndexShowContract::class, MainNewsService::class);
         $this->app->bind(UpdateServiceContract::class, ArticleUpdateService::class);

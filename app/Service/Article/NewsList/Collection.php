@@ -10,6 +10,7 @@ class Collection
     {
         $this->items[] = $item;
     }
+
     public function getItems(): array
     {
         return $this->items;

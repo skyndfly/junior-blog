@@ -13,17 +13,18 @@ class CkeditorImageUplod extends Controller
     {
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $filePath = 'uploads/' . $filename;
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            $filePath = 'uploads/'.$filename;
 
             Storage::disk('public')->put($filePath, file_get_contents($file));
 
             $url = Storage::url($filePath);
 
             return response()->json([
-                'url' => $url
+                'url' => $url,
             ]);
         }
+
         return response()->json(['uploaded' => false], 400);
     }
 }

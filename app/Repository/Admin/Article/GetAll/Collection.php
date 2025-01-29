@@ -15,5 +15,4 @@ final class Collection
     {
         return $this->items;
     }
-
 }
