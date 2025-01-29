@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container mx-auto">
-        <div class="grid grid-cols-table gap-8 py-14">
+        <div class="grid xl:grid-cols-[10fr_3fr] lg:grid-cols-[8fr_5fr] gap-8 py-14">
 
             <div class="px-3">
 
