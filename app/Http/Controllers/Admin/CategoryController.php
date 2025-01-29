@@ -40,7 +40,6 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, CategoryEditServiceContract $service): RedirectResponse
     {
-        //TODO добавить активность или не активность категории
         try {
             $data = new CategoryEditDto($request->validated());
             $service->handle($data);
