@@ -1,4 +1,4 @@
-<section class="flex justify-between pt-8 py-4 border-b-2 border-gray-300">
+<section class="flex justify-between pt-8 py-4 border-b-2 border-gray-300  px-3 lg:px-0">
     <div class="flex gap-1 text-sm">
         <span class="font-bold">
             Главная

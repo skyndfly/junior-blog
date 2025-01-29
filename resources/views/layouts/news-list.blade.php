@@ -3,8 +3,8 @@
     /** @var Dto[] $articles */
     $articles = Handler::handle()->getItems();
 @endphp
-<h4>Последние записи</h4>
-<ul role="list" class="divide-y divide-gray-100">
+<h4 class="text-2xl font-bold px-3 lg:px-0">Последние записи</h4>
+<ul role="list" class="divide-y divide-gray-100 px-3 lg:px-0">
     @foreach($articles as $item)
         <li class="flex justify-between gap-x-6 py-5">
             <a href="{{route('article.show', $item->slug)}}" class="flex min-w-0 gap-x-4 ">
