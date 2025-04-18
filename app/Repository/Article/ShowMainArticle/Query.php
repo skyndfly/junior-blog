@@ -3,14 +3,11 @@
 namespace App\Repository\Article\ShowMainArticle;
 
 use App\Models\Article;
-use Spatie\DataTransferObject\Exceptions\UnknownProperties;
+use App\Models\Category;
 
 final class Query
 {
-    /**
-     * @throws UnknownProperties
-     */
-    public function execute(): ?Dto
+    public function execute(): ?ArticleMainDto
     {
         $data = Article::query()
             ->where(['status' => Article::STATUS_PUBLISHED])
@@ -19,7 +16,17 @@ final class Query
         if ($data === null) {
             return null;
         }
+        /** @var Category $category */
+        $category = $data->category;
 
-        return new Dto($data->toArray());
+        return new ArticleMainDto(
+            $data->title,
+            $data->slug,
+            $data->shortDescription,
+            $data->mainImage,
+            $data->created_at,
+            $category->name,
+            $category->id
+        );
     }
 }

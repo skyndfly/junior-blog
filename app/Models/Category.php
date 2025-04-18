@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class Category
- *
  * @property int $id
  * @property string $name
- * @property string $title
- * @property string $description
+ * @property int|null $parentId
+ * @property string $status
+ * @property string $created_at
  */
 class Category extends Model
 {

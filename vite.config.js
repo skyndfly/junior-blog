@@ -6,7 +6,9 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         hmr:{
+            //host: 'junior-blog.loc'
             host: 'junior-blog.ru'
+            // host: '0.0.0.0'
         }
     },
     plugins: [

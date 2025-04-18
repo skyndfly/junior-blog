@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
@@ -18,6 +19,9 @@ Route::get('/dashboard', function () {
 
 //article
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('article.show');
+
+//category
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 //comments
 Route::post('/comments/add-comment-guest', [CommentsController::class, 'storeGuest'])->name('comments.store.guest');
