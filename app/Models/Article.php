@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $id
+ * @property string $title
+ * @property string slug
+ * @property string $description
+ * @property string $shortDescription
+ * @property string $mainImage
+ * @property string $status
+ * @property string $categoryId
+ * @property string $created_at
+ */
 class Article extends Model
 {
     use HasFactory;

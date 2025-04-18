@@ -3,7 +3,7 @@
 namespace App\Service\Article\MainNews;
 
 use App\Contracts\Index\ShowContract;
-use App\Repository\Article\ShowMainArticle\Dto as ShowMainArticleDto;
+use App\Repository\Article\ShowMainArticle\ArticleMainDto as ShowMainArticleDto;
 use App\Repository\Article\ShowMainArticle\Query as ShowMainArticleQuery;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
