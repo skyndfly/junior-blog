@@ -18,7 +18,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //article
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('/{category}/{article}', [ArticleController::class, 'show'])->name('article.show');
 
 //category
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('category.show');

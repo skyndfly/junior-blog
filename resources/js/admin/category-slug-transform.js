@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const textInput = document.getElementById('title');
+    const textInput = document.getElementById('name');
     const slugOutput = document.getElementById('slug');
 
     const translitMap = {

@@ -4,7 +4,7 @@ namespace App\Service\Admin\Category\Store;
 
 use App\Contracts\Admin\Category\CategoryStoreServiceContract;
 use App\Models\Category;
-use App\Repository\Admin\CategoryRepository;
+use App\Repository\CategoryRepository;
 use App\Service\Admin\Category\Store\Dto\StoreDto as CategoryStoreDto;
 
 class StoreService implements CategoryStoreServiceContract
@@ -20,6 +20,7 @@ class StoreService implements CategoryStoreServiceContract
     {
         $model = Category::create(
             $dto->name,
+            $dto->slug,
             $dto->parentId
         );
         $this->repository->store($model);

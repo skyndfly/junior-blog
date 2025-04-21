@@ -10,7 +10,8 @@ final class ArticleMainDto
         public string $shortDescription,
         public string $mainImage,
         public string $created_at,
-        public ?string $category,
-        public ?int $categoryId,
+        public string $category,
+        public string $categorySlug,
+        public int $categoryId,
     ) {}
 }

@@ -4,7 +4,7 @@ namespace App\Service\Admin\Category\Edit;
 
 use App\Contracts\Admin\Category\CategoryEditServiceContract;
 use App\Models\Category;
-use App\Repository\Admin\CategoryRepository;
+use App\Repository\CategoryRepository;
 use App\Service\Admin\Category\Edit\Dto\CategoryEditDto;
 
 class CategoryEditService implements CategoryEditServiceContract
@@ -20,7 +20,7 @@ class CategoryEditService implements CategoryEditServiceContract
     {
         /** @var Category $category */
         $category = Category::findOrFail($data->id);
-        $newModel = $category->updateCategory($data->name, $data->parentId);
+        $newModel = $category->updateCategory($data->name, $data->slug, $data->parentId);
         $this->categoryRepository->store($newModel);
     }
 }

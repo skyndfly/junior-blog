@@ -4,7 +4,7 @@ namespace App\Service\Admin\Article\Store;
 
 use App\Contracts\Admin\Article\ArticleStoreContract;
 use App\Models\Article;
-use App\Repository\Admin\ArticleRepository;
+use App\Repository\ArticleRepository;
 
 class StoreService implements ArticleStoreContract
 {

@@ -2,6 +2,7 @@
     use Illuminate\Support\Carbon;
     use App\Repository\Article\ShowMainArticle\ArticleMainDto as ArticleDto;
     /** @var ArticleDto $article */
+    /** @var \App\Service\Article\NewsList\dto\NewsListDto[] $news  */
 @endphp
 @extends('layouts.app')
 
@@ -29,14 +30,22 @@
                                 {{Carbon::parse($article->created_at)->format('d-m-Y H:i')}}
                             </div>
                         </div>
-                        <a href="{{route('article.show', $article->slug)}}" title="Открыть запись" class="text-3xl  hover:text-purple-800">
+                        <a href="{{route('article.show', [
+                                                    'category' =>$article->categorySlug,
+                                                    'article' => $article->slug
+                                                ]
+)}}" title="Открыть запись" class="text-3xl  hover:text-purple-800">
                             {{$article->title}}
                         </a>
                         <img class="py-2" src="{{ asset('storage/' . $article->mainImage) }}" alt="">
                         <p class="text-justify mb-3">
                             {!! $article->shortDescription!!}
                         </p>
-                        <a href="{{route('article.show', $article->slug)}}"
+                        <a href="{{route('article.show', [
+                                                    'category' =>$article->categorySlug,
+                                                    'article' => $article->slug
+                                                ]
+)}}"
                            class="group mt-3 font-bold hover:text-purple-800" title="Открыть запись">
                             Читать полностью
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-2"></i>
@@ -47,7 +56,7 @@
                 @endif
             </div>
             <section class="">
-                @include('layouts.news-list')
+                @include('layouts.news-list', $news)
             </section>
         </div>
     </div>

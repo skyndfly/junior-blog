@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Article\Dto;
+namespace App\Service\Article\dto;
 
 class ArticleGetSimilarDto
 {

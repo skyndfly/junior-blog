@@ -6,7 +6,7 @@ use App\Contracts\Admin\Article\UpdateServiceContract;
 use App\Helpers\UploadImageHelper;
 use App\Http\Requests\Admin\Article\UpdateRequest as ArticleUpdateRequest;
 use App\Models\Article;
-use App\Repository\Admin\ArticleRepository;
+use App\Repository\ArticleRepository;
 use App\Service\Admin\Article\Store\StoreDto as StoreDto;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
