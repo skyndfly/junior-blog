@@ -4,18 +4,17 @@ namespace App\Service\Article;
 
 use App\Contracts\Articles\ArticleShowServiceContract;
 use App\Models\Article;
+use App\Models\Category;
 use App\Repository\Article\Show\Dto as ArticleShowDto;
-use App\Service\Admin\Category\Show\CategoryShowDto;
 use DomainException;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class ArticleShowService implements ArticleShowServiceContract
 {
-    public function execute(CategoryShowDto $categoryShowDto, Article $article): ArticleShowDto
+    public function execute(Category $category, Article $article): ArticleShowDto
     {
-        $categoryName = ! empty($categoryShowDto->name) ? $categoryShowDto->name : '';
         try {
-            return $this->createArticleShowDto($categoryName, $article->toArray());
+            return $this->createArticleShowDto($category->name, $article->toArray());
         } catch (UnknownProperties $e) {
             throw new DomainException('Не возможно показать статью. Сообщение:'.$e->getMessage());
         }
@@ -24,7 +23,7 @@ class ArticleShowService implements ArticleShowServiceContract
     /**
      * @throws UnknownProperties
      */
-    public function createArticleShowDto(string $categoryName, array $article): ArticleShowDto
+    private function createArticleShowDto(string $categoryName, array $article): ArticleShowDto
     {
         return new ArticleShowDto(array_merge($article, ['category' => $categoryName]));
     }

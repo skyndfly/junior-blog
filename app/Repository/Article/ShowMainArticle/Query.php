@@ -26,6 +26,7 @@ final class Query
             $data->mainImage,
             $data->created_at,
             $category->name,
+            $category->slug,
             $category->id
         );
     }

@@ -2,7 +2,7 @@
 
 namespace App\Contracts\Admin\Article;
 
-use App\Repository\Admin\ArticleRepository;
+use App\Repository\ArticleRepository;
 use App\Service\Admin\Article\Store\StoreDto;
 
 interface ArticleStoreContract

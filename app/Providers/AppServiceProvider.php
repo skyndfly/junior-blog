@@ -7,7 +7,6 @@ use App\Contracts\Admin\Article\UpdateServiceContract;
 use App\Contracts\Admin\Category\CategoryEditServiceContract;
 use App\Contracts\Admin\Category\CategoryStoreServiceContract;
 use App\Contracts\Admin\ShowAllForSelectServiceContract;
-use App\Contracts\Articles\ArticleGetSimilarServiceContract;
 use App\Contracts\Articles\ArticleShowServiceContract;
 use App\Contracts\Comments\CommentsGetAllByArticleServiceContract;
 use App\Contracts\Comments\CommentsStoreAuthServiceContract;
@@ -18,7 +17,6 @@ use App\Service\Admin\Article\Update\UpdateService as ArticleUpdateService;
 use App\Service\Admin\Category\Edit\CategoryEditService;
 use App\Service\Admin\Category\ShowAllForSelect\ShowAllForSelectService as CategoryShowService;
 use App\Service\Admin\Category\Store\StoreService as CategoryStoreService;
-use App\Service\Article\ArticleGetSimilarService;
 use App\Service\Article\ArticleShowService;
 use App\Service\Article\MainNews\Handler as MainNewsService;
 use App\Service\Comment\CommentsGetAllByArticleService;
@@ -49,7 +47,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CommentsStoreGuestServiceContract::class, CommentStoreGuestService::class);
         $this->app->bind(CommentsStoreAuthServiceContract::class, CommentStoreAuthService::class);
         $this->app->bind(CommentsGetAllByArticleServiceContract::class, CommentsGetAllByArticleService::class);
-        $this->app->bind(ArticleGetSimilarServiceContract::class, ArticleGetSimilarService::class);
         $this->app->bind(ArticleShowServiceContract::class, ArticleShowService::class);
 
     }

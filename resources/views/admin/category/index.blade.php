@@ -1,4 +1,6 @@
-@php use App\Enums\CategoryStatusEnum; @endphp
+@php use App\Enums\CategoryStatusEnum;
+ /** @var \App\Models\Category[] $categories */
+ @endphp
 
 @extends('admin.layouts.app')
 
@@ -21,6 +23,9 @@
                     Имя
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Ссылка
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Родительская категория
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -40,7 +45,9 @@
                     <td class="px-6 py-4">
                         {{$item->name}}
                     </td>
-
+                    <td class="px-6 py-4">
+                        {{$item->slug}}
+                    </td>
                     <td class="px-6 py-4">
                         @if($item->parent !== null)
                             {{$item->parent->name}}

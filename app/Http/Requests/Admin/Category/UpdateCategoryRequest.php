@@ -6,19 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCategoryRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return auth()->guard('admin')->check();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         $catId = $this->input('id');
@@ -26,6 +18,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'id' => 'required|exists:categories,id',
             'name' => 'required|unique:categories,name,'.$catId,
+            'slug' => 'required|unique:categories,slug,'.$catId,
             'parentId' => 'nullable|exists:categories,id',
         ];
     }

@@ -8,5 +8,7 @@ class StoreDto extends DataTransferObject
 {
     public string $name;
 
+    public string $slug;
+
     public ?int $parentId = null;
 }

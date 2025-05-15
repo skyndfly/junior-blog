@@ -10,7 +10,6 @@ use App\Http\Requests\Admin\Category\StoreRequest as StoreRequestCategory;
 use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Service\Admin\Category\Edit\Dto\CategoryEditDto;
-use App\Service\Admin\Category\Show\CategoryShowDto;
 use App\Service\Admin\Category\ShowAll\ShowAllService as CategoryShowAllService;
 use App\Service\Admin\Category\Store\Dto\StoreDto as CategoryStoreDto;
 use DomainException;
@@ -88,7 +87,7 @@ class CategoryController extends Controller
         $allCategories = $allCategoriesService->handle();
 
         return view('admin.category.edit', [
-            'category' => new CategoryShowDto($category->toArray()),
+            'category' => $category,
             'allCategories' => $allCategories,
         ]);
     }

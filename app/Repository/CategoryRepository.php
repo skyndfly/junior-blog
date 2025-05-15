@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Admin;
+namespace App\Repository;
 
 use App\Enums\CategoryStatusEnum;
 use App\Models\Category;

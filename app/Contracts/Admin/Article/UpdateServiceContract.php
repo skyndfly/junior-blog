@@ -4,7 +4,7 @@ namespace App\Contracts\Admin\Article;
 
 use App\Http\Requests\Admin\Article\UpdateRequest as ArticleUpdateRequest;
 use App\Models\Article;
-use App\Repository\Admin\ArticleRepository;
+use App\Repository\ArticleRepository;
 
 interface UpdateServiceContract
 {

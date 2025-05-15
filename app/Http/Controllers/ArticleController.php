@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Articles\ArticleGetSimilarServiceContract as ArticleGetSimilarService;
 use App\Models\Article;
-use App\Service\Admin\Category\Show\CategoryShowDto;
+use App\Models\Category;
 use App\Service\Article\ArticleShowService;
-use App\Service\Article\Dto\ArticleGetSimilarDto;
 use DomainException;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -21,23 +17,19 @@ class ArticleController extends Controller
     /**
      * @throws UnknownProperties
      */
-    public function show(Article $article, ArticleGetSimilarService $getSimilarService, ArticleShowService $articleShowService): Application|RedirectResponse|Redirector|View
+    public function show(Category $category, Article $article, ArticleShowService $articleShowService): RedirectResponse|View
     {
         try {
-            $category = new CategoryShowDto($article->category->toArray());
-
             $article = $articleShowService->execute($category, $article);
-
+            $similars = Article::query()
+                ->where('categoryId', $category->id)
+                ->where('id', '!=', $article->id)
+                ->latest()
+                ->limit(4)
+                ->get();
             if (empty($article->id)) {
                 throw new UnknownProperties('Не возможно загрузить похожие статьи. Отсутствует ArticleId');
             }
-            $similarArticles = $getSimilarService->execute(new ArticleGetSimilarDto($category->id, $article->id))->getItems();
-
-        } catch (UnknownProperties $e) {
-            $uuid = Uuid::uuid4();
-            $message = "{$e->getMessage()}. Error code - {$uuid}";
-            $logMessage = 'Class: '.__METHOD__.' | Line: '.__LINE__.' | '.$message;
-            Log::error($logMessage);
 
         } catch (DomainException $e) {
             $uuid = Uuid::uuid4();
@@ -50,7 +42,7 @@ class ArticleController extends Controller
 
         return view('article.show', [
             'article' => $article,
-            'similarArticles' => $similarArticles,
+            'similarArticles' => $similars,
         ]);
     }
 }

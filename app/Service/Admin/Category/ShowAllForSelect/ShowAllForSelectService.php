@@ -3,7 +3,7 @@
 namespace App\Service\Admin\Category\ShowAllForSelect;
 
 use App\Contracts\Admin\ShowAllForSelectServiceContract;
-use App\Repository\Admin\CategoryRepository;
+use App\Repository\CategoryRepository;
 use App\Service\Admin\Category\ShowAllForSelect\Dto\CollectionDto;
 use App\Service\Admin\Category\ShowAllForSelect\Dto\ShowAllForSelectDto;
 

@@ -10,5 +10,7 @@ class CategoryEditDto extends DataTransferObject
 
     public string $name;
 
+    public string $slug;
+
     public ?int $parentId;
 }

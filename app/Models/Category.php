@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $id
  * @property string $name
+ * @property string $slug
  * @property int|null $parentId
  * @property string $status
  * @property string $created_at
@@ -24,32 +25,30 @@ class Category extends Model
 
     protected $table = 'categories';
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public static function create(
         string $name,
+        string $slug,
         ?int $parentId,
     ): Category {
         $category = new Category;
-        $category['name'] = $name;
-        $category['parentId'] = $parentId;
-        $category['status'] = CategoryStatusEnum::STATUS_ACTIVE->value;
+        $category->name = $name;
+        $category->slug = $slug;
+        $category->parentId = $parentId;
+        $category->status = CategoryStatusEnum::STATUS_ACTIVE->value;
 
         return $category;
     }
 
-    public function setName(string $name): void
+    public function updateCategory(string $name, string $slug, ?int $parentId): self
     {
-        $this->attributes['name'] = $name;
-    }
-
-    public function setParentId(?int $parentId): void
-    {
-        $this->attributes['parentId'] = $parentId;
-    }
-
-    public function updateCategory(string $name, ?int $parentId): self
-    {
-        $this->setName($name);
-        $this->setParentId($parentId);
+        $this->name = $name;
+        $this->parentId = $parentId;
+        $this->slug = $slug;
 
         return $this;
     }

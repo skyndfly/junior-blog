@@ -2,7 +2,7 @@
 
 namespace App\Contracts\Admin\Article;
 
-use App\Repository\Admin\CategoryRepository;
+use App\Repository\CategoryRepository;
 
 interface ShowServiceContract
 {

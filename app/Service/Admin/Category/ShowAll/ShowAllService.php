@@ -2,7 +2,7 @@
 
 namespace App\Service\Admin\Category\ShowAll;
 
-use App\Repository\Admin\CategoryRepository;
+use App\Repository\CategoryRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ShowAllService
