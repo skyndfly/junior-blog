@@ -7,9 +7,7 @@ use App\Models\Category;
 use App\Service\Article\ArticleShowService;
 use DomainException;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -41,6 +39,7 @@ class ArticleController extends Controller
 
             return redirect(route('index'))->with('error', "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}");
         }
+
         return view('article.show', [
             'article' => $article,
             'similarArticles' => $similars,
