@@ -19,11 +19,16 @@ class ArticleController extends Controller
     /**
      * @throws UnknownProperties
      */
-    public function show(Category $category, Article $article, ArticleShowService $articleShowService): Application|RedirectResponse|Redirector|View
+    public function show(Category $category, Article $article, ArticleShowService $articleShowService): RedirectResponse|View
     {
         try {
             $article = $articleShowService->execute($category, $article);
-
+            $similars = Article::query()
+                ->where('categoryId', $category->id)
+                ->where('id', '!=', $article->id)
+                ->latest()
+                ->limit(4)
+                ->get();
             if (empty($article->id)) {
                 throw new UnknownProperties('Не возможно загрузить похожие статьи. Отсутствует ArticleId');
             }
@@ -36,11 +41,9 @@ class ArticleController extends Controller
 
             return redirect(route('index'))->with('error', "Ошибка. Обратитесь к администрации сайта, указав код - {$uuid}");
         }
-
-        //TODO вывести похожие статьи
         return view('article.show', [
             'article' => $article,
-            'similarArticles' => null,
+            'similarArticles' => $similars,
         ]);
     }
 }

@@ -23,7 +23,7 @@ class ArticleShowService implements ArticleShowServiceContract
     /**
      * @throws UnknownProperties
      */
-    public function createArticleShowDto(string $categoryName, array $article): ArticleShowDto
+    private function createArticleShowDto(string $categoryName, array $article): ArticleShowDto
     {
         return new ArticleShowDto(array_merge($article, ['category' => $categoryName]));
     }

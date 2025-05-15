@@ -1,8 +1,6 @@
 @php
-    use App\Repository\Article\GetSimilar\GetSimilarDto;
     use App\Repository\Article\Show\Dto as ArticleShowDto;
     /** @var ArticleShowDto $article */
-    /** @var GetSimilarDto[] $similarArticles */
 @endphp
 
 @extends('layouts.app')
@@ -36,8 +34,8 @@
                             <p class="mb-4">{{$item->shortDescription}}</p>
                             <a class="text-blue-500 absolute bottom-2 font-bold hover:underline "
                                href="{{route('article.show', [
-                                                    'category' =>$article->categorySlug,
-                                                    'article' => $article->slug
+                                                    'category' =>$item->category->slug,
+                                                    'article' => $item->slug
                                                 ]
 )}}"
                             >Читать дальше...</a>
